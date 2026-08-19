@@ -2,2134 +2,666 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>NEXORA — Student Learning Hub</title>
-
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0b1020">
+<title>NAXORA — Student Learning OS</title>
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-
 :root{
- --bg:#080b14;
- --panel:#111827;
- --panel2:#151d2d;
- --text:#f5f7ff;
- --muted:#9aa5b8;
- --primary:#7c5cff;
- --primary2:#a78bfa;
- --border:#283247;
- --success:#55d98a;
- --danger:#ff687d;
-}
-
-body{
- font-family:Inter,Arial,sans-serif;
- background:var(--bg);
- color:var(--text);
- min-height:100vh;
- transition:.3s;
-}
-
-button,input,textarea,select{font:inherit}
-
-button{
- cursor:pointer;
- border:0;
-}
-
-.hidden{display:none!important}
-
-a{color:inherit}
-
-/* LOGIN */
-
-.login{
- min-height:100vh;
- display:flex;
- align-items:center;
- justify-content:center;
- padding:20px;
- background:
- radial-gradient(circle at 20% 20%,#28185c55,transparent 35%),
- radial-gradient(circle at 80% 70%,#5c2d7b44,transparent 35%),
- var(--bg);
-}
-
-.login-card{
- width:min(460px,100%);
- padding:42px;
- background:#101522ee;
- border:1px solid var(--border);
- border-radius:24px;
- box-shadow:0 30px 80px #0008;
-}
-
-.logo{
- font-size:22px;
- font-weight:900;
- letter-spacing:4px;
-}
-
-.logo span{color:var(--primary2)}
-
-.login-card h1{
- font-size:48px;
- margin:35px 0 12px;
- line-height:.95;
-}
-
-.login-card p{
- color:var(--muted);
- line-height:1.7;
- margin-bottom:25px;
-}
-
-.input{
- width:100%;
- padding:14px;
- margin:7px 0;
- border-radius:10px;
- border:1px solid var(--border);
- background:#080c15;
- color:white;
- outline:none;
-}
-
-.input:focus{
- border-color:var(--primary);
-}
-
-.primary{
- width:100%;
- padding:14px;
- border-radius:10px;
- background:linear-gradient(100deg,var(--primary),#6256ff);
- color:white;
- font-weight:700;
- margin-top:8px;
-}
-
-.small{
- font-size:12px;
- color:#6f7a8e;
- margin-top:15px;
- display:block;
-}
-
-/* APP */
-
-header{
- height:70px;
- position:sticky;
- top:0;
- z-index:100;
- display:flex;
- align-items:center;
- gap:20px;
- padding:10px 4%;
- background:#080b14e8;
- backdrop-filter:blur(15px);
- border-bottom:1px solid var(--border);
-}
-
-nav{
- display:flex;
- gap:6px;
- overflow:auto;
- flex:1;
-}
-
-nav button,.ghost{
- white-space:nowrap;
- padding:9px 13px;
- color:#cdd4e2;
- background:#0e1420;
- border:1px solid var(--border);
- border-radius:8px;
-}
-
-nav button:hover,.ghost:hover{
- border-color:var(--primary);
- color:white;
-}
-
-main{
- max-width:1200px;
- margin:auto;
-}
-
-.page{
- display:none;
- padding:55px 22px;
- min-height:calc(100vh - 140px);
-}
-
-.page.active{display:block}
-
-.eyebrow{
- color:var(--primary2);
- font-size:11px;
- font-weight:bold;
- letter-spacing:3px;
- margin-bottom:10px;
-}
-
-.hero-title{
- font-size:clamp(42px,7vw,78px);
- letter-spacing:-4px;
- line-height:.95;
- margin-bottom:15px;
-}
-
-.muted{
- color:var(--muted);
- line-height:1.7;
-}
-
-.grid{
- display:grid;
- grid-template-columns:repeat(3,1fr);
- gap:15px;
- margin-top:30px;
-}
-
-.card{
- background:var(--panel);
- border:1px solid var(--border);
- border-radius:17px;
- padding:23px;
- transition:.2s;
-}
-
-.card:hover{
- transform:translateY(-3px);
- border-color:#6550c8;
-}
-
-.card h3{margin-bottom:9px}
-
-.card p{
- color:var(--muted);
- line-height:1.6;
- margin-bottom:17px;
-}
-
-.btn{
- padding:11px 15px;
- border-radius:9px;
- background:#202a3d;
- color:white;
-}
-
-.btn.primary-btn{
- background:var(--primary);
-}
-
-.stats{
- display:grid;
- grid-template-columns:repeat(4,1fr);
- gap:12px;
- margin-top:25px;
-}
-
-.stat{
- background:var(--panel);
- border:1px solid var(--border);
- padding:20px;
- border-radius:14px;
-}
-
-.stat b{
- display:block;
- font-size:30px;
- color:var(--primary2);
-}
-
-.stat span{
- color:var(--muted);
- font-size:12px;
-}
-
-/* TOOLBAR */
-
-.toolbar{
- display:flex;
- flex-wrap:wrap;
- gap:9px;
- margin:25px 0;
-}
-
-.toolbar>*{
- padding:13px;
- background:var(--panel);
- color:white;
- border:1px solid var(--border);
- border-radius:9px;
-}
-
-.toolbar button{
- background:var(--primary);
- border:0;
-}
-
-/* CONTENT */
-
-.content{
- background:var(--panel);
- border:1px solid var(--border);
- border-radius:17px;
- padding:25px;
- line-height:1.75;
-}
-
-.content h2,.content h3{
- color:var(--primary2);
- margin:18px 0 8px;
-}
-
-.content code{
- background:#080b12;
- padding:3px 6px;
- border-radius:5px;
-}
-
-pre{
- overflow:auto;
- background:#070a10;
- padding:15px;
- border-radius:10px;
- border:1px solid var(--border);
-}
-
-/* LEARNING */
-
-.learn-layout{
- display:grid;
- grid-template-columns:260px 1fr;
- gap:18px;
-}
-
-.subtopics{
- background:var(--panel);
- border:1px solid var(--border);
- border-radius:15px;
- padding:15px;
-}
-
-.subtopics button{
- width:100%;
- text-align:left;
- background:transparent;
- color:#aeb8ca;
- padding:11px;
- border-radius:8px;
- margin-bottom:4px;
-}
-
-.subtopics button:hover,
-.subtopics button.active{
- background:#211b3d;
- color:white;
-}
-
-.doubt{
- margin-top:15px;
- padding:18px;
- border:1px solid var(--border);
- border-radius:13px;
- background:#0d121d;
-}
-
-.doubt input{
- width:100%;
- padding:11px;
- background:#080b12;
- border:1px solid var(--border);
- color:white;
- border-radius:8px;
- margin:8px 0;
-}
-
-/* CODE LAB */
-
-.code-grid{
- display:grid;
- grid-template-columns:1fr 1fr;
- gap:15px;
-}
-
-.editor textarea{
- width:100%;
- height:160px;
- margin:6px 0 15px;
- padding:13px;
- background:#060910;
- color:#e5e9f2;
- border:1px solid var(--border);
- border-radius:9px;
- font-family:monospace;
- resize:vertical;
-}
-
-iframe{
- width:100%;
- height:535px;
- background:white;
- border:1px solid var(--border);
- border-radius:12px;
-}
-
-/* RESUME */
-
-.resume-form{
- display:grid;
- grid-template-columns:1fr 1fr;
- gap:9px;
-}
-
-.resume-form textarea{
- min-height:110px;
-}
-
-.resume-form textarea,
-.resume-form input{
- width:100%;
- padding:13px;
- background:var(--panel);
- border:1px solid var(--border);
- color:white;
- border-radius:9px;
-}
-
-.full{
- grid-column:1/-1;
-}
-
-.resume-preview{
- margin:25px auto;
- max-width:850px;
- background:white;
- color:#111;
- padding:45px;
- line-height:1.6;
-}
-
-.resume-preview h1{
- font-size:38px;
-}
-
-.resume-preview h2{
- margin-top:22px;
- border-bottom:1px solid #ccc;
- padding-bottom:5px;
-}
-
-/* QUIZ */
-
-.quiz-option{
- width:100%;
- text-align:left;
- padding:14px;
- margin:7px 0;
- background:#0b1019;
- color:white;
- border:1px solid var(--border);
- border-radius:9px;
-}
-
-.quiz-option:hover{
- border-color:var(--primary);
-}
-
-.quiz-option.selected{
- background:#261d45;
- border-color:var(--primary2);
-}
-
-.quiz-nav{
- display:flex;
- justify-content:space-between;
- margin-top:18px;
-}
-
-.review{
- padding:14px 0;
- border-bottom:1px solid var(--border);
-}
-
-.correct{color:var(--success)}
-.wrong{color:var(--danger)}
-
-/* RESOURCES */
-
-.resource-grid{
- display:grid;
- grid-template-columns:repeat(3,1fr);
- gap:14px;
-}
-
-.resource{
- padding:22px;
- background:var(--panel);
- border:1px solid var(--border);
- border-radius:15px;
- text-decoration:none;
-}
-
-.resource:hover{
- border-color:var(--primary);
-}
-
-.resource span{
- display:block;
- color:var(--muted);
- margin-top:8px;
- line-height:1.5;
-}
-
-/* THEME */
-
-.theme-panel{
- position:fixed;
- right:20px;
- bottom:20px;
- z-index:200;
- background:var(--panel);
- border:1px solid var(--border);
- padding:14px;
- border-radius:14px;
- box-shadow:0 15px 40px #0008;
-}
-
-.theme-panel select{
- padding:9px;
- background:#080b12;
- color:white;
- border:1px solid var(--border);
- border-radius:8px;
-}
-
-/* FOOTER */
-
-footer{
- text-align:center;
- padding:30px;
- color:#5f6b7e;
- font-size:12px;
-}
-
-/* MOBILE */
-
-@media(max-width:800px){
-
- header{
-  flex-wrap:wrap;
-  height:auto;
- }
-
- nav{
-  order:3;
-  width:100%;
- }
-
- .grid,
- .resource-grid,
- .stats{
-  grid-template-columns:1fr;
- }
-
- .learn-layout,
- .code-grid,
- .resume-form{
-  grid-template-columns:1fr;
- }
-
- .page{
-  padding:35px 15px;
- }
-
- .login-card{
-  padding:30px 22px;
- }
-
- .login-card h1{
-  font-size:40px;
- }
-
- .hero-title{
-  font-size:48px;
- }
-
- .full{
-  grid-column:auto;
- }
-}
-
+ --bg:#070a12;--surface:#0d1320;--surface2:#121a2a;--surface3:#172238;
+ --text:#f5f7ff;--muted:#94a0b5;--line:#263248;--accent:#8b6cff;--accent2:#4dd7ff;
+ --good:#52dfa0;--bad:#ff6b7d;--warn:#ffc267;--shadow:0 24px 70px #0008;
+}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:
+radial-gradient(circle at 80% -10%,#39247a55,transparent 32%),
+radial-gradient(circle at 10% 20%,#123c5c22,transparent 28%),var(--bg);
+color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Arial,sans-serif}
+button,input,textarea,select{font:inherit}button{cursor:pointer}a{color:inherit;text-decoration:none}
+.hidden{display:none!important}.muted{color:var(--muted)}.small{font-size:12px;color:var(--muted)}
+.app{min-height:100vh}.login{min-height:100vh;display:grid;place-items:center;padding:22px;background:
+radial-gradient(circle at 20% 15%,#6c4cff30,transparent 35%),var(--bg)}
+.loginCard{width:min(500px,100%);padding:42px;border:1px solid var(--line);background:#0c1220e8;
+border-radius:28px;box-shadow:var(--shadow);backdrop-filter:blur(18px)}
+.brand{display:flex;align-items:center;gap:10px;font-weight:900;letter-spacing:2px}.brandMark{
+width:36px;height:36px;border-radius:11px;display:grid;place-items:center;background:linear-gradient(135deg,var(--accent),var(--accent2))}
+.loginCard h1{font-size:54px;line-height:.95;letter-spacing:-4px;margin:34px 0 14px}.loginCard p{line-height:1.7;color:var(--muted)}
+.field{width:100%;padding:13px 14px;border-radius:11px;border:1px solid var(--line);background:#080d17;color:var(--text);outline:none;margin:6px 0}
+.field:focus{border-color:var(--accent);box-shadow:0 0 0 3px #8b6cff18}
+.primary{border:0;color:white;background:linear-gradient(135deg,#7257ec,var(--accent));box-shadow:0 10px 28px #795fff30}
+.btn{border:1px solid var(--line);background:var(--surface2);color:var(--text);border-radius:10px;padding:11px 15px;font-weight:750}
+.btn.primary{border:0}.btn.danger{color:#fff;background:#54202a;border-color:#73303c}
+.btn:disabled{opacity:.45;cursor:not-allowed}.btn:hover{transform:translateY(-1px)}
+.topbar{height:72px;position:sticky;top:0;z-index:100;display:flex;align-items:center;gap:22px;padding:0 4%;
+background:#070a12e8;border-bottom:1px solid var(--line);backdrop-filter:blur(18px)}
+nav{display:flex;gap:5px;overflow:auto;flex:1}nav button{white-space:nowrap;border:1px solid transparent;background:transparent;
+color:var(--muted);padding:9px 12px;border-radius:9px;font-weight:700}nav button:hover,nav button.active{background:var(--surface2);color:#fff;border-color:var(--line)}
+.headerActions{display:flex;gap:7px}.iconBtn{width:40px;height:40px;border:1px solid var(--line);background:var(--surface);color:#fff;border-radius:10px}
+.profileBtn{display:flex;align-items:center;gap:8px;border:1px solid var(--line);background:var(--surface);color:#fff;padding:5px 9px;border-radius:10px}
+.avatarMini{width:29px;height:29px;border-radius:8px;display:grid;place-items:center;background:linear-gradient(135deg,var(--accent),var(--accent2));font-size:11px;font-weight:900}
+main{max-width:1240px;margin:auto}.page{display:none;padding:52px 24px 70px;min-height:calc(100vh - 72px)}.page.active{display:block}
+.eyebrow{font-size:10px;letter-spacing:2px;color:#a999ff;font-weight:900;margin-bottom:10px}.hero{display:grid;grid-template-columns:1.05fr .95fr;gap:50px;align-items:center;min-height:590px}
+.hero h1{font-size:clamp(46px,7vw,82px);letter-spacing:-5px;line-height:.94;margin:0 0 22px}.gradient{background:linear-gradient(90deg,var(--accent),var(--accent2));-webkit-background-clip:text;color:transparent}
+.hero p{max-width:650px;color:var(--muted);font-size:16px;line-height:1.75}.actions{display:flex;gap:10px;flex-wrap:wrap;margin:28px 0}
+.mini{display:flex;gap:30px}.mini strong{display:block;font-size:25px}.mini span{font-size:11px;color:var(--muted)}
+.visual{position:relative;min-height:420px;display:grid;place-items:center}.codeWindow{width:min(480px,95%);border:1px solid #30394e;background:#090e18;border-radius:20px;box-shadow:var(--shadow);overflow:hidden;transform:rotate(-2deg)}
+.windowTop{padding:13px 15px;border-bottom:1px solid #293247;color:#69758a}.dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:#454e60;margin-right:5px}
+.codeWindow pre{margin:0;padding:25px;color:#e6e9f5;line-height:1.85;font-size:13px}.resultLine{border-top:1px solid #293247;padding:12px;color:var(--good);font-size:12px}
+.float{position:absolute;background:#101828;border:1px solid var(--line);padding:14px 16px;border-radius:13px;box-shadow:0 18px 45px #0008}.float.one{left:0;top:35px}.float.two{right:0;bottom:30px}
+.sectionHead{display:flex;justify-content:space-between;align-items:end;gap:15px;margin:20px 0}.sectionHead h2{margin:0;font-size:30px}
+.grid4,.grid3,.stats{display:grid;gap:14px}.grid4{grid-template-columns:repeat(4,1fr)}.grid3{grid-template-columns:repeat(3,1fr)}.stats{grid-template-columns:repeat(4,1fr)}
+.card,.panel,.stat,.feature,.project,.resource,.quizCard{background:linear-gradient(180deg,var(--surface),#0b111c);border:1px solid var(--line);border-radius:17px;padding:21px}
+.feature,.project,.resource,.quizCard{transition:.2s}.feature:hover,.project:hover,.resource:hover,.quizCard:hover{transform:translateY(-3px);border-color:#7864dc88}
+.featureIcon{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;background:var(--surface3);color:#b2a5ff;margin-bottom:18px;font-weight:900}
+.card p,.feature p,.project p,.resource p,.quizCard p{color:var(--muted);font-size:13px;line-height:1.65}.card h3,.feature h3,.project h3,.resource h3{margin:0 0 8px}
+.stat span{font-size:12px;color:var(--muted)}.stat strong{display:block;font-size:30px;margin:10px 0;color:#c0b6ff}.bar{height:6px;background:#222c3d;border-radius:99px;overflow:hidden}.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2))}
+.toolbar{display:flex;gap:9px;flex-wrap:wrap;margin:22px 0}.toolbar>*{padding:12px;background:var(--surface);border:1px solid var(--line);border-radius:10px;color:#fff;outline:none}
+.toolbar input{min-width:250px}.toolbar button{background:var(--accent);border-color:transparent;font-weight:800}
+.learnLayout{display:grid;grid-template-columns:245px 1fr;gap:17px}.side{background:var(--surface);border:1px solid var(--line);border-radius:15px;padding:10px;height:max-content}
+.side button{width:100%;text-align:left;border:0;background:transparent;color:var(--muted);padding:11px;border-radius:8px}.side button:hover,.side button.active{background:#211b3e;color:#fff}
+.content{background:var(--surface);border:1px solid var(--line);border-radius:17px;padding:26px;line-height:1.75}.content h2,.content h3{color:#b5a7ff}.lessonCode{background:#080d16;border:1px solid var(--line);padding:15px;border-radius:10px;overflow:auto}
+.doubt{margin-top:15px;padding:18px;background:#0b111b;border:1px solid var(--line);border-radius:14px}
+.twoCol{display:grid;grid-template-columns:1fr 1fr;gap:16px}.editorGrid{display:grid;grid-template-columns:1fr 1fr;gap:16px}.editor textarea{width:100%;height:155px;resize:vertical;background:#070c14;color:#e8ecf7;border:1px solid var(--line);border-radius:10px;padding:13px;font-family:ui-monospace,SFMono-Regular,Consolas,monospace}
+iframe{width:100%;height:500px;border:1px solid var(--line);border-radius:12px;background:white}
+.progressLayout{display:grid;grid-template-columns:1.4fr .8fr;gap:16px}.skill{margin:20px 0}.skillTop{display:flex;justify-content:space-between;font-size:13px;margin-bottom:7px}
+.projectGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.chips{display:flex;gap:6px;flex-wrap:wrap;margin:14px 0}.chip{font-size:10px;background:var(--surface3);padding:6px 8px;border-radius:7px;color:var(--muted)}
+.formGrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.wide{grid-column:1/-1}.formGrid textarea{min-height:110px}
+.resumePreview{background:#fff;color:#15171d;padding:42px;max-width:850px;margin:22px auto;line-height:1.6}.resumePreview h1{font-size:38px;margin:0}.resumePreview h2{border-bottom:1px solid #ccc;padding-bottom:5px;margin-top:22px}
+.notesGrid{display:grid;grid-template-columns:1fr 1fr;gap:16px}.notesGrid textarea{width:100%;min-height:430px;background:#090f18;color:#fff;border:1px solid var(--line);border-radius:13px;padding:16px;resize:vertical}
+.quizSetup{max-width:850px;margin:auto}.quizBox{max-width:850px;margin:auto}.quizOption{width:100%;display:flex;gap:12px;align-items:center;text-align:left;background:var(--surface2);color:#fff;border:1px solid var(--line);padding:15px;border-radius:11px;margin:9px 0}
+.quizOption:hover,.quizOption.selected{border-color:var(--accent);background:#8b6cff12}.letter{width:29px;height:29px;display:grid;place-items:center;background:#252c3c;border-radius:7px;color:var(--muted);font-weight:900}
+.quizNav{display:flex;justify-content:space-between;margin-top:20px}.quizProgress{height:7px;background:#232c3d;border-radius:99px;overflow:hidden;margin:22px 0}.quizProgress i{display:block;height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2))}
+.reviewItem{background:var(--surface);border:1px solid var(--line);padding:15px;border-radius:12px;margin:9px 0}.good{color:var(--good)}.bad{color:var(--bad)}
+.resourceGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.resource b{display:block}.resource span{color:var(--muted);font-size:12px;line-height:1.5;display:block;margin-top:8px}
+.profileLayout{display:grid;grid-template-columns:1fr 1fr;gap:14px}.profile{text-align:center}.avatar{width:86px;height:86px;margin:auto;border-radius:23px;display:grid;place-items:center;background:linear-gradient(135deg,var(--accent),var(--accent2));font-size:25px;font-weight:900}
+.check{display:block;padding:13px 0;border-bottom:1px solid var(--line);color:var(--muted)}.check input{accent-color:var(--accent)}
+footer{border-top:1px solid var(--line);padding:25px 4%;display:flex;justify-content:space-between;color:#6f7b90;font-size:12px}
+.toast{position:fixed;right:18px;bottom:18px;background:var(--surface2);border:1px solid var(--line);padding:13px 16px;border-radius:11px;box-shadow:var(--shadow);transform:translateY(100px);opacity:0;transition:.2s;z-index:300}.toast.show{transform:none;opacity:1}
+.mobileMenu{display:none}
+@media(max-width:980px){.grid4,.stats{grid-template-columns:1fr 1fr}.grid3,.projectGrid,.resourceGrid{grid-template-columns:1fr 1fr}.hero{grid-template-columns:1fr}.visual{min-height:350px}.learnLayout,.progressLayout,.profileLayout{grid-template-columns:1fr}.side{display:flex;overflow:auto}.side button{white-space:nowrap;width:auto}.editorGrid{grid-template-columns:1fr}}
+@media(max-width:680px){.topbar{height:auto;min-height:70px;flex-wrap:wrap;padding:12px 18px}.mobileMenu{display:block}.topbar nav{display:none;order:5;width:100%;flex-basis:100%;flex-direction:column}.topbar nav.open{display:flex}.headerActions{margin-left:auto}.profileBtn .profileText{display:none}.page{padding:38px 15px}.hero h1{font-size:48px}.grid4,.grid3,.stats,.projectGrid,.resourceGrid,.twoCol,.notesGrid,.formGrid{grid-template-columns:1fr}.mini{gap:18px}.float{font-size:11px}.float.one{left:-3px}.float.two{right:-3px}.loginCard{padding:30px 22px}.loginCard h1{font-size:42px}.resumePreview{padding:25px}}
+
+@media print{
+  body{background:#fff!important;color:#111!important}
+  .topbar,footer,.page:not(#resume),#resume>.eyebrow,#resume>h1,#resume>p,#resume>.panel{display:none!important}
+  #resume{display:block!important;padding:0!important}
+  .resumePreview{display:block!important;margin:0!important;max-width:none!important;box-shadow:none!important}
+}
+
+.resumePreview{background:#fff;color:#172033;max-width:900px;margin:20px auto;padding:48px 58px;border-radius:14px;box-shadow:0 12px 40px rgba(0,0,0,.16);line-height:1.55}
+.resumePreview h1{font-size:34px;margin:0 0 4px;color:#101828}.resumePreview h2{font-size:15px;text-transform:uppercase;letter-spacing:1.2px;border-bottom:2px solid #e5e7eb;padding-bottom:6px;margin:24px 0 8px;color:#4f46e5}.resumePreview p{margin:6px 0}.resumePreview .resumeSkills{display:flex;flex-wrap:wrap;gap:7px}.resumePreview .resumeSkill{border:1px solid #dbe1ea;border-radius:99px;padding:3px 9px;font-size:12px}
+.projectOutput h2{margin:0}.projectOutput .phase{padding:12px 14px;border:1px solid var(--line);border-radius:10px;margin:8px 0}.projectOutput .phase b{display:block;margin-bottom:3px}
+@media print{body{background:white!important}.topbar,footer,.page:not(#resume),#resume>.eyebrow,#resume>h1,#resume>p,#resume>.panel{display:none!important}#resume{display:block!important;padding:0!important}.resumePreview{box-shadow:none!important;margin:0!important;max-width:none!important;border-radius:0!important}}
 </style>
 </head>
-
 <body>
 
-<!-- LOGIN -->
-
 <div id="loginScreen" class="login">
- <div class="login-card">
-  <div class="logo">◈ <span>NEXORA</span></div>
-  <h1>Learn.<br>Build.<br>Grow.</h1>
-  <p>Your professional student learning workspace.</p>
-
-  <input id="loginName" class="input" placeholder="Your name">
-  <input id="loginEmail" class="input" type="email" placeholder="Email address">
-
-  <button class="primary" id="loginBtn">Create / Continue →</button>
-
-  <span class="small">
-   Your profile is stored locally in your browser.
-  </span>
- </div>
+  <div class="loginCard">
+    <div class="brand"><div class="brandMark">N</div>NAXORA</div>
+    <h1>Learn.<br><span class="gradient">Build.</span><br>Grow.</h1>
+    <p>A unified student workspace for learning concepts, practicing quizzes, building projects, coding in-browser and becoming career-ready.</p>
+    <input id="loginName" class="field" placeholder="Your name">
+    <input id="loginEmail" class="field" type="email" placeholder="Email address">
+    <button class="btn primary" style="width:100%;padding:14px;margin-top:8px" onclick="login()">Enter Naxora →</button>
+    <div class="small" style="margin-top:15px">Your profile and progress are stored locally in this browser.</div>
+  </div>
 </div>
 
-<!-- APP -->
-
-<div id="app" class="hidden">
-
-<header>
- <div class="logo">◈ <span>NEXORA</span></div>
-
- <nav>
-  <button data-page="dashboard">Home</button>
-  <button data-page="learn">Learn</button>
-  <button data-page="projects">Build</button>
-  <button data-page="compiler">Code Lab</button>
-  <button data-page="resume">Resume</button>
-  <button data-page="notes">Notes</button>
-  <button data-page="quiz">Quiz</button>
-  <button data-page="resources">Resources</button>
- </nav>
-
- <button class="ghost" id="logout">Logout</button>
+<div id="app" class="app hidden">
+<header class="topbar">
+  <div class="brand"><div class="brandMark">N</div>NAXORA</div>
+  <button class="iconBtn mobileMenu" onclick="toggleNav()">☰</button>
+  <nav id="nav">
+    <button data-page="home" onclick="go('home')">Home</button>
+    <button data-page="learn" onclick="go('learn')">Learn</button>
+    <button data-page="practice" onclick="go('practice')">Practice</button>
+    <button data-page="code" onclick="go('code')">Code Lab</button>
+    <button data-page="projects" onclick="go('projects')">Projects</button>
+    <button data-page="resume" onclick="go('resume')">Resume</button>
+    <button data-page="notes" onclick="go('notes')">Notes</button>
+    <button data-page="resources" onclick="go('resources')">Resources</button>
+  </nav>
+  <div class="headerActions">
+    <button class="iconBtn" onclick="toggleTheme()" title="Theme">◐</button>
+    <button class="profileBtn" onclick="go('profile')"><span class="avatarMini" id="miniAvatar">TG</span><span class="profileText" id="miniName">Student</span></button>
+  </div>
 </header>
 
 <main>
-
-<!-- DASHBOARD -->
-
-<section id="dashboard" class="page active">
-
- <div class="eyebrow">NEXORA STUDENT OS</div>
-
- <h1 class="hero-title">
-  Welcome, <span id="userName">Student</span>.
- </h1>
-
- <p class="muted">
-  Learn concepts, build projects, improve your resume and test your knowledge.
- </p>
-
- <div class="grid">
-
-  <div class="card">
-   <h3>📚 Learning Center</h3>
-   <p>Study programming concepts through structured topics and subtopics.</p>
-   <button class="btn primary-btn" data-page="learn">Start Learning</button>
+<section id="home" class="page active">
+  <div class="hero">
+    <div>
+      <div class="eyebrow">YOUR PERSONAL LEARNING OS</div>
+      <h1>Learn smarter.<br><span class="gradient">Build stronger.</span><br>Get career-ready.</h1>
+      <p>Naxora brings together structured learning, randomized assessments, progress tracking, browser coding, projects, notes, resume tools and curated resources in one focused experience.</p>
+      <div class="actions">
+        <button class="btn primary" onclick="go('learn')">Start Learning →</button>
+        <button class="btn" onclick="go('practice')">Take a Quiz</button>
+      </div>
+      <div class="mini">
+        <div><strong>8+</strong><span>Technologies</span></div>
+        <div><strong>120+</strong><span>Concepts</span></div>
+        <div><strong>500+</strong><span>Questions</span></div>
+      </div>
+    </div>
+    <div class="visual">
+      <div class="float one">✓ <b id="heroScore">0%</b><br><span class="small">Best quiz score</span></div>
+      <div class="codeWindow">
+        <div class="windowTop"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+        <pre><span style="color:#c7a8ff">def</span> <span style="color:#69d9ff">learn</span>(skill):
+    progress = <span style="color:#ffca78">practice</span>(skill)
+    <span style="color:#c7a8ff">if</span> progress &gt;= <span style="color:#65e59a">90</span>:
+        <span style="color:#c7a8ff">return</span> <span style="color:#65e59a">"Career Ready"</span></pre>
+        <div class="resultLine">✓ Output: Career Ready</div>
+      </div>
+      <div class="float two">🔥 <b id="heroAttempts">0</b><br><span class="small">Quiz attempts</span></div>
+    </div>
   </div>
 
-  <div class="card">
-   <h3>🚀 Project Builder</h3>
-   <p>Turn your idea into a structured project with features and roadmap.</p>
-   <button class="btn" data-page="projects">Build</button>
+  <div class="sectionHead"><div><div class="eyebrow">EXPLORE NAXORA</div><h2>Everything you need to grow</h2></div></div>
+  <div class="grid4">
+    <article class="feature" onclick="go('learn')"><div class="featureIcon">⌘</div><h3>Learn Concepts</h3><p>Structured explanations, examples, syntax, outputs and common mistakes.</p></article>
+    <article class="feature" onclick="go('practice')"><div class="featureIcon">✓</div><h3>Practice & Quiz</h3><p>Randomized MCQs with hints, scoring, grading and answer review.</p></article>
+    <article class="feature" onclick="go('code')"><div class="featureIcon">&lt;/&gt;</div><h3>Code Lab</h3><p>Write HTML, CSS and JavaScript and run it directly in the browser.</p></article>
+    <article class="feature" onclick="go('resume')"><div class="featureIcon">▤</div><h3>Career Studio</h3><p>Create a polished student resume and connect your projects and skills.</p></article>
   </div>
 
-  <div class="card">
-   <h3>💻 Code Lab</h3>
-   <p>Write and run HTML, CSS and JavaScript directly in your browser.</p>
-   <button class="btn" data-page="compiler">Open Lab</button>
+  <div class="panel" style="margin-top:18px">
+    <div class="eyebrow">THE NAXORA METHOD</div><h2 style="margin:0">From confusion to confidence.</h2>
+    <div class="grid4" style="margin-top:20px">
+      <div><b>01</b><p class="muted">Discover</p></div><div><b>02</b><p class="muted">Learn</p></div><div><b>03</b><p class="muted">Practice</p></div><div><b>04</b><p class="muted">Assess → Build</p></div>
+    </div>
   </div>
-
-  <div class="card">
-   <h3>📄 Resume Studio</h3>
-   <p>Create a professional resume designed for students and developers.</p>
-   <button class="btn" data-page="resume">Improve Resume</button>
-  </div>
-
-  <div class="card">
-   <h3>📝 Smart Notes</h3>
-   <p>Paste your notes and extract important exam-focused information.</p>
-   <button class="btn" data-page="notes">Open Notes</button>
-  </div>
-
-  <div class="card">
-   <h3>🎯 Assessment</h3>
-   <p>Take randomized quizzes and receive percentage scores and grades.</p>
-   <button class="btn" data-page="quiz">Take Quiz</button>
-  </div>
-
- </div>
-
- <div class="stats">
-
-  <div class="stat">
-   <b id="attempts">0</b>
-   <span>Quiz Attempts</span>
-  </div>
-
-  <div class="stat">
-   <b id="average">0%</b>
-   <span>Average Score</span>
-  </div>
-
-  <div class="stat">
-   <b id="projectsDone">0</b>
-   <span>Projects</span>
-  </div>
-
-  <div class="stat">
-   <b id="bestScore">0%</b>
-   <span>Best Score</span>
-  </div>
-
- </div>
-
 </section>
-
-
-<!-- LEARN -->
 
 <section id="learn" class="page">
-
- <div class="eyebrow">LEARNING CENTER</div>
- <h1 class="hero-title">Understand, don't memorize.</h1>
-
- <div class="toolbar">
-
-  <select id="learnTopic">
-   <option>Python</option>
-   <option>JavaScript</option>
-   <option>C++</option>
-   <option>Java</option>
-   <option>HTML & CSS</option>
-   <option>SQL</option>
-   <option>Data Structures</option>
-   <option>AI & Data Science</option>
-  </select>
-
-  <button id="loadLesson">Load Topic</button>
-
- </div>
-
- <div class="learn-layout">
-
-  <div class="subtopics" id="subtopics"></div>
-
-  <div>
-
-   <article class="content" id="lessonContent"></article>
-
-   <div class="doubt">
-
-    <h3>🤖 NEXORA Doubt Helper</h3>
-
-    <p class="muted">
-     Ask a simple question about the selected topic.
-    </p>
-
-    <input id="doubtInput" placeholder="Example: What is a Python function?">
-
-    <button class="btn primary-btn" id="doubtBtn">
-     Explain My Doubt
-    </button>
-
-    <div id="doubtAnswer"></div>
-
-   </div>
-
+  <div class="eyebrow">LEARNING HUB</div><h1 style="font-size:52px;letter-spacing:-3px;margin:0 0 10px">Choose what you want to master.</h1>
+  <p class="muted">Start with fundamentals and move through practical concepts.</p>
+  <div class="toolbar">
+    <select id="learnTopic">
+      <option>Python</option><option>JavaScript</option><option>C++</option><option>Java</option><option>HTML & CSS</option><option>SQL</option><option>Data Structures</option><option>AI & Data Science</option>
+    </select>
+    <input id="learnSearch" placeholder="Search concepts..." oninput="renderTopics()">
   </div>
-
- </div>
-
+  <div class="learnLayout">
+    <aside class="side" id="topicList"></aside>
+    <div>
+      <article class="content" id="lessonContent"></article>
+      <div class="doubt"><h3 style="margin:0">🤖 Naxora Doubt Helper</h3><p class="muted">Ask a simple question about the selected topic.</p>
+        <input id="doubtInput" class="field" placeholder="Example: What is a Python function?">
+        <button class="btn primary" onclick="answerDoubt()">Explain my doubt</button>
+        <div id="doubtAnswer" style="margin-top:12px"></div>
+      </div>
+    </div>
+  </div>
 </section>
 
+<section id="practice" class="page">
+  <div class="eyebrow">ASSESSMENT ENGINE</div><h1 style="font-size:52px;letter-spacing:-3px;margin:0 0 10px">Practice without the confusion.</h1>
+  <p class="muted">Choose a subject, question count and test yourself.</p>
+  <div id="quizSetup" class="quizSetup">
+    <div class="toolbar">
+      <select id="quizSubject"></select>
+      <select id="quizCount"><option value="5">5 Questions</option><option value="10">10 Questions</option></select>
+      <button onclick="startQuiz()">Start Quiz →</button>
+    </div>
+    <div id="quizHome" class="grid3">
+      <div class="quizCard"><div class="eyebrow">AUTO SCORING</div><h3>Instant Results</h3><p>Every answer is evaluated automatically and your grade is calculated immediately.</p></div>
+      <div class="quizCard"><div class="eyebrow">REVIEW MODE</div><h3>Learn From Mistakes</h3><p>Review your selected answer, correct answer and explanation after submission.</p></div>
+      <div class="quizCard"><div class="eyebrow">KEYBOARD</div><h3>Fast Navigation</h3><p>Use 1–4 to choose an answer and Enter to continue.</p></div>
+    </div>
+  </div>
+  <div id="quizArea" class="quizBox hidden"></div>
+  <div id="quizResult" class="quizBox hidden"></div>
+</section>
 
-<!-- PROJECTS -->
+<section id="code" class="page">
+  <div class="eyebrow">MULTI-LANGUAGE CODE LAB</div>
+  <h1 style="font-size:52px;letter-spacing:-3px;margin:0 0 10px">Write. Compile. Run.</h1>
+  <p class="muted">A professional coding workspace with local browser execution and an online compiler bridge for compiled languages.</p>
+
+  <div class="panel" style="margin-top:20px">
+    <div class="toolbar">
+      <select id="compilerLanguage" onchange="changeCompilerLanguage()">
+        <option value="javascript">JavaScript</option>
+        <option value="python">Python</option>
+        <option value="c">C</option>
+        <option value="cpp">C++</option>
+        <option value="java">Java</option>
+        <option value="csharp">C#</option>
+        <option value="go">Go</option>
+        <option value="rust">Rust</option>
+        <option value="php">PHP</option>
+        <option value="kotlin">Kotlin</option>
+        <option value="typescript">TypeScript</option>
+        <option value="html">HTML</option>
+        <option value="css">CSS</option>
+        <option value="sql">SQL</option>
+      </select>
+      <button class="btn primary" onclick="runCompiler()">▶ Run / Compile</button>
+      <button class="btn" onclick="clearCompiler()">Clear</button>
+      <button class="btn" onclick="loadCompilerExample()">Example</button>
+      <button class="btn" onclick="saveCodeProject()">Save Code</button>
+    </div>
+    <div class="small" id="compilerStatus">JavaScript runs locally. Other programming languages use the online compiler bridge when available.</div>
+  </div>
+
+  <div class="editorGrid" style="margin-top:16px">
+    <div class="panel editor">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+        <b id="editorLabel">JavaScript</b><span class="small">Ctrl/⌘ + Enter to run</span>
+      </div>
+      <textarea id="compilerCode" style="height:520px;width:100%;resize:vertical;background:#070c14;color:#e8ecf7;border:1px solid var(--line);border-radius:10px;padding:15px;font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:13px;line-height:1.6"></textarea>
+    </div>
+    <div class="panel">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <b>Console / Output</b><span class="small" id="compilerTime"></span>
+      </div>
+      <pre id="compilerOutput" style="white-space:pre-wrap;min-height:520px;margin-top:14px;padding:18px;background:#070c14;border:1px solid var(--line);border-radius:10px;color:#dce3f3;overflow:auto">Ready.</pre>
+    </div>
+  </div>
+
+  <div class="panel" style="margin-top:16px">
+    <div class="eyebrow">WEB PREVIEW</div>
+    <p class="muted">For HTML/CSS, preview your page here.</p>
+    <iframe id="webPreview" sandbox="allow-scripts" style="height:380px"></iframe>
+  </div>
+</section>
 
 <section id="projects" class="page">
+  <div class="eyebrow">PROJECT BUILDER</div>
+  <h1 style="font-size:48px;letter-spacing:-2px;margin:0 0 8px">Build a complete project.</h1>
+  <p class="muted">Everything is generated in your browser. No API, server or internet connection is required.</p>
 
- <div class="eyebrow">PROJECT BUILDER</div>
- <h1 class="hero-title">Build something real.</h1>
-
- <div class="toolbar">
-
-  <input id="projectInput" placeholder="Example: Student Attendance System">
-
-  <select id="projectLevel">
-   <option>Beginner</option>
-   <option>Intermediate</option>
-   <option>Advanced</option>
-  </select>
-
-  <button id="projectBtn">Generate Project</button>
-
- </div>
-
- <div class="content" id="projectOutput">
-  Enter an idea to generate your project roadmap.
- </div>
-
-</section>
-
-
-<!-- CODE LAB -->
-
-<section id="compiler" class="page">
-
- <div class="eyebrow">CODE LAB</div>
- <h1 class="hero-title">Build & Run.</h1>
-
- <div class="code-grid">
-
-  <div class="editor">
-
-   <label>HTML</label>
-   <textarea id="htmlCode"><h1>Hello NEXORA</h1>
-<p>Welcome to Code Lab.</p></textarea>
-
-   <label>CSS</label>
-   <textarea id="cssCode">body{
-font-family:Arial;
-padding:30px;
-}
-h1{
-color:#7656e8;
-}</textarea>
-
-   <label>JavaScript</label>
-   <textarea id="jsCode">console.log("NEXORA works!");</textarea>
-
-   <button class="btn primary-btn" id="runCode">▶ Run Code</button>
-
+  <div class="panel" style="margin-top:20px">
+    <div class="formGrid">
+      <label>Project name<input id="projectName" class="field" placeholder="Smart Attendance System"></label>
+      <label>Project type<select id="projectCategory" class="field"><option>Web App</option><option>Mobile App</option><option>AI / ML</option><option>Data Science</option><option>Desktop App</option><option>Game</option><option>Automation</option></select></label>
+      <label>Difficulty<select id="projectLevel2" class="field"><option>Beginner</option><option>Intermediate</option><option>Advanced</option></select></label>
+      <label>Technology<input id="projectStack" class="field" placeholder="HTML, CSS, JavaScript"></label>
+      <label class="wide">Project goal<textarea id="projectDescription" class="field" placeholder="Explain what the project should solve and who will use it."></textarea></label>
+    </div>
+    <div class="actions">
+      <button class="btn primary" onclick="buildProjectOffline()">Build Project</button>
+      <button class="btn" onclick="projectExample()">Example</button>
+      <button class="btn" onclick="clearProjectOffline()">Clear</button>
+    </div>
   </div>
 
-  <iframe id="preview" sandbox="allow-scripts"></iframe>
+  <div id="projectBuilderOutput" style="margin-top:16px"></div>
 
- </div>
-
- <p class="muted">
- Browser execution supports HTML, CSS and JavaScript.
- </p>
-
+  <div class="sectionHead"><div><div class="eyebrow">READY-MADE STARTERS</div><h2>One-click project ideas</h2></div></div>
+  <div class="projectGrid">
+    <article class="project"><h3>Quiz App</h3><p>Questions, timer, score, review and progress.</p><button class="btn" onclick="projectTemplate('Quiz App','Web App','HTML, CSS, JavaScript','Create an interactive quiz platform with categories, random questions, timer, scoring and answer review.')">Build this →</button></article>
+    <article class="project"><h3>Expense Tracker</h3><p>Income, expenses, categories and summaries.</p><button class="btn" onclick="projectTemplate('Expense Tracker','Web App','HTML, CSS, JavaScript','Track income and expenses, categorize transactions and show useful monthly summaries.')">Build this →</button></article>
+    <article class="project"><h3>Student Management</h3><p>Students, attendance, marks and reports.</p><button class="btn" onclick="projectTemplate('Student Management System','Web App','HTML, CSS, JavaScript, LocalStorage','Manage students, attendance, marks and reports in one responsive application.')">Build this →</button></article>
+  </div>
 </section>
-
-
-<!-- RESUME -->
 
 <section id="resume" class="page">
+  <div class="eyebrow">RESUME BUILDER</div>
+  <h1 style="font-size:48px;letter-spacing:-2px;margin:0 0 8px">Build your resume.</h1>
+  <p class="muted">Create, preview, save and print an ATS-friendly resume entirely offline.</p>
 
- <div class="eyebrow">CAREER STUDIO</div>
- <h1 class="hero-title">Make your resume stronger.</h1>
-
- <div class="resume-form">
-
-  <input id="rName" placeholder="Full Name">
-  <input id="rRole" placeholder="Professional Title">
-
-  <input id="rEmail" placeholder="Email">
-  <input id="rPhone" placeholder="Phone">
-
-  <textarea class="full" id="rSummary" placeholder="Professional Summary"></textarea>
-
-  <input id="rSkills" placeholder="Skills">
-  <input id="rLinkedin" placeholder="LinkedIn / Portfolio">
-
-  <textarea class="full" id="rEducation" placeholder="Education"></textarea>
-
-  <textarea class="full" id="rExperience" placeholder="Experience / Internships"></textarea>
-
-  <textarea class="full" id="rProjects" placeholder="Projects"></textarea>
-
-  <textarea class="full" id="rAchievements" placeholder="Achievements / Certifications"></textarea>
-
-  <button class="primary full" id="resumeBtn">
-   Generate Professional Resume
-  </button>
-
- </div>
-
- <div id="resumeOutput"></div>
-
+  <div class="panel" style="margin-top:20px">
+    <div class="formGrid">
+      <label>Full name<input id="rName" class="field" placeholder="Your Name"></label>
+      <label>Professional title<input id="rRole" class="field" placeholder="Student Developer"></label>
+      <label>Email<input id="rEmail" class="field" placeholder="you@example.com"></label>
+      <label>Phone<input id="rPhone" class="field" placeholder="+91 00000 00000"></label>
+      <label>Location<input id="rLocation" class="field" placeholder="India"></label>
+      <label>LinkedIn / Portfolio<input id="rLinks" class="field" placeholder="linkedin.com/in/yourname"></label>
+      <label class="wide">Professional summary<textarea id="rSummary" class="field" placeholder="Write a short 2–4 line professional summary."></textarea></label>
+      <label class="wide">Skills<textarea id="rSkills" class="field" placeholder="Python, JavaScript, SQL, Git, Communication"></textarea></label>
+      <label class="wide">Education<textarea id="rEducation" class="field" placeholder="Degree — Institution — Year&#10;Relevant coursework or achievements"></textarea></label>
+      <label class="wide">Projects<textarea id="rProjects" class="field" placeholder="Project Name — Technologies&#10;What you built and the result"></textarea></label>
+      <label class="wide">Experience / Internships<textarea id="rExperience" class="field" placeholder="Role — Company — Dates&#10;Achievements and responsibilities"></textarea></label>
+      <label class="wide">Certifications & Achievements<textarea id="rCerts" class="field" placeholder="Certification — Issuer — Year&#10;Awards, hackathons, competitions"></textarea></label>
+    </div>
+    <div class="actions">
+      <button class="btn primary" onclick="updateResumeOffline()">Update Preview</button>
+      <button class="btn" onclick="saveResumeOffline()">Save Resume</button>
+      <button class="btn" onclick="resumeExampleOffline()">Load Example</button>
+      <button class="btn" onclick="printResumeOffline()">Print / Save PDF</button>
+      <button class="btn" onclick="clearResumeOffline()">Clear</button>
+    </div>
+  </div>
+  <div id="resumePreview" class="resumePreview"></div>
 </section>
-
-
-<!-- NOTES -->
 
 <section id="notes" class="page">
-
- <div class="eyebrow">SMART NOTES</div>
- <h1 class="hero-title">Study smarter.</h1>
-
- <textarea id="notesInput"
- class="input"
- style="min-height:320px"
- placeholder="Paste your notes here..."></textarea>
-
- <button class="btn primary-btn" id="analyzeNotes">
-  Analyze Notes
- </button>
-
- <div class="content" id="notesOutput"></div>
-
+  <div class="eyebrow">SMART NOTES</div><h1 style="font-size:52px;letter-spacing:-3px;margin:0 0 10px">Turn notes into revision material.</h1>
+  <p class="muted">Write or paste notes, then extract exam-focused points.</p>
+  <div class="notesGrid">
+    <textarea id="notesInput" placeholder="Paste your notes here..."></textarea>
+    <div class="content"><h2>Key Points</h2><div id="notesOutput" class="muted">Your extracted points will appear here.</div><button class="btn primary" style="margin-top:15px" onclick="extractNotes()">Extract Key Points</button></div>
+  </div>
 </section>
-
-
-<!-- QUIZ -->
-
-<section id="quiz" class="page">
-
- <div class="eyebrow">ASSESSMENT ENGINE</div>
- <h1 class="hero-title">Test yourself.</h1>
-
- <div class="toolbar">
-
-  <select id="quizLanguage">
-   <option>Python</option>
-   <option>JavaScript</option>
-   <option>HTML</option>
-   <option>CSS</option>
-   <option>C++</option>
-   <option>Java</option>
-   <option>SQL</option>
-   <option>General Programming</option>
-  </select>
-
-  <select id="quizCount">
-   <option value="5">5 Questions</option>
-   <option value="10">10 Questions</option>
-  </select>
-
-  <button id="startQuiz">Start Quiz</button>
-
- </div>
-
- <div class="content" id="quizBox">
-  Select a subject and start a quiz.
- </div>
-
-</section>
-
-
-<!-- RESOURCES -->
 
 <section id="resources" class="page">
-
- <div class="eyebrow">LEARNING RESOURCES</div>
- <h1 class="hero-title">Learn from the best.</h1>
-
- <div class="resource-grid">
-
-  <a class="resource" href="https://developer.mozilla.org/" target="_blank">
-   <b>MDN Web Docs</b>
-   <span>HTML, CSS, JavaScript and Web APIs.</span>
-  </a>
-
-  <a class="resource" href="https://docs.python.org/3/" target="_blank">
-   <b>Python Documentation</b>
-   <span>Official Python documentation.</span>
-  </a>
-
-  <a class="resource" href="https://dev.java/learn/" target="_blank">
-   <b>Java Learning</b>
-   <span>Official Java learning resources.</span>
-  </a>
-
-  <a class="resource" href="https://cplusplus.com/doc/" target="_blank">
-   <b>C++ Reference</b>
-   <span>C++ language reference.</span>
-  </a>
-
-  <a class="resource" href="https://www.freecodecamp.org/" target="_blank">
-   <b>freeCodeCamp</b>
-   <span>Free coding lessons and projects.</span>
-  </a>
-
-  <a class="resource" href="https://www.w3schools.com/" target="_blank">
-   <b>W3Schools</b>
-   <span>Beginner-friendly programming tutorials.</span>
-  </a>
-
- </div>
-
+  <div class="eyebrow">LEARNING RESOURCES</div><h1 style="font-size:52px;letter-spacing:-3px;margin:0 0 10px">Learn from trusted references.</h1>
+  <div class="resourceGrid" style="margin-top:24px">
+    <a class="resource" href="https://developer.mozilla.org/" target="_blank"><b>MDN Web Docs</b><span>HTML, CSS, JavaScript and Web APIs.</span></a>
+    <a class="resource" href="https://docs.python.org/3/" target="_blank"><b>Python Documentation</b><span>Official Python documentation.</span></a>
+    <a class="resource" href="https://dev.java/learn/" target="_blank"><b>Java Learning</b><span>Official Java learning resources.</span></a>
+    <a class="resource" href="https://cplusplus.com/doc/" target="_blank"><b>C++ Reference</b><span>C++ language reference.</span></a>
+    <a class="resource" href="https://www.freecodecamp.org/" target="_blank"><b>freeCodeCamp</b><span>Free coding lessons and projects.</span></a>
+    <a class="resource" href="https://www.w3schools.com/" target="_blank"><b>W3Schools</b><span>Beginner-friendly programming tutorials.</span></a>
+  </div>
 </section>
 
+<section id="profile" class="page">
+  <div class="eyebrow">PROFILE</div><h1 style="font-size:52px;letter-spacing:-3px;margin:0 0 10px">Your Naxora profile.</h1>
+  <div class="profileLayout">
+    <div class="panel profile"><div class="avatar" id="profileAvatar">TG</div><h2 id="profileName">Student</h2><p id="profileEmail" class="muted"></p><p id="profileStats" class="muted"></p></div>
+    <div class="panel"><h2>Learning goals</h2>
+      <label class="check"><input type="checkbox" checked> Master Python</label>
+      <label class="check"><input type="checkbox" checked> Build projects</label>
+      <label class="check"><input type="checkbox"> Prepare for interviews</label>
+      <label class="check"><input type="checkbox"> Improve resume</label>
+      <button class="btn primary" style="margin-top:18px;width:100%" onclick="toast('Preferences saved.')">Save preferences</button>
+      <button class="btn danger" style="margin-top:8px;width:100%" onclick="logout()">Log out</button>
+    </div>
+  </div>
+</section>
 </main>
 
-<footer>
- © 2026 NEXORA • Student Learning Platform
-</footer>
-
+<footer><span>NAXORA</span><span>Learn • Practice • Track • Build</span><span>© 2026</span></footer>
+<div id="toast" class="toast"></div>
 </div>
-
-
-<!-- THEME -->
-
-<div class="theme-panel">
- <select id="themeSelect">
-  <option value="purple">Purple Theme</option>
-  <option value="blue">Ocean Blue</option>
-  <option value="green">Emerald</option>
-  <option value="red">Crimson</option>
-  <option value="gold">Golden</option>
- </select>
-</div>
-
 
 <script>
-
 "use strict";
-
-/* =========================
-   STORAGE
-========================= */
-
-const STORAGE="NEXORA_PRO_V1";
-
-let data;
-
-try{
- data=JSON.parse(localStorage.getItem(STORAGE)) || {
-  user:null,
-  attempts:[],
-  projects:[],
-  theme:"purple"
- };
-}catch{
- data={
-  user:null,
-  attempts:[],
-  projects:[],
-  theme:"purple"
- };
-}
-
-function save(){
- localStorage.setItem(STORAGE,JSON.stringify(data));
-}
-
-
-/* =========================
-   HELPERS
-========================= */
-
+const QUIZ_DB={"Python": [["Which Python collection stores unique values and does not use key-value pairs?", ["List", "Dictionary", "Set", "Tuple"], 2, "Sets store unique values."], ["What is printed by this code?\n\nname = \"Teju\"\nprint(name)", ["name", "Teju", "\"Teju\"", "None"], 1, "print() displays the value stored in the variable."], ["Which keyword is used to define a function in Python?", ["function", "define", "def", "fun"], 2, "Python uses def."], ["What is the type of the value 18 in Python?", ["str", "float", "bool", "int"], 3, "18 is a whole number."], ["What does numbers.add(50) do when numbers is a Python set?", ["Removes 50", "Adds 50", "Sorts the set", "Creates a list"], 1, "add() inserts a value into a set."], ["Which Python structure stores data as key-value pairs?", ["Set", "Tuple", "Dictionary", "List"], 2, "Dictionaries map keys to values."], ["What happens when this code runs?\n\nprint(10 / 0)", ["It prints 0", "It prints infinity", "It raises ZeroDivisionError", "It returns None"], 2, "Division by zero raises an exception."], ["Can the elements of a tuple be directly changed after the tuple is created?", ["Yes, always", "No", "Only strings can change", "Only integers can change"], 1, "Tuples are immutable."], ["Which keyword begins a class definition in Python?", ["object", "class", "struct", "new"], 1, "class defines a class."], ["Which built-in function returns the number of items in a collection?", ["size()", "count()", "length()", "len()"], 3, "len() returns the number of items."]], "C++": [["Which symbol ends most C++ statements?", [".", ":", ";", "!"], 2, "C++ statements normally end with ;"], ["Which header is commonly used for cout?", ["stdio", "iostream", "string", "math"], 1, "iostream provides cout."], ["Which keyword defines a class?", ["object", "class", "structs", "define"], 1, "class defines a class."], ["Which operator obtains an address?", ["*", "&", "@", "#"], 1, "& is the address-of operator."], ["Which container is part of STL?", ["vector", "arraylist", "collection", "sequence"], 0, "vector is an STL container."]], "Java": [["Which keyword creates an object?", ["make", "create", "new", "object"], 2, "new creates objects."], ["Which method is the Java entry point?", ["start()", "main()", "run()", "begin()"], 1, "main() is the standard entry point."], ["Which keyword creates inheritance?", ["inherits", "extends", "parent", "superclass"], 1, "extends is used for class inheritance."], ["Java source files normally use which extension?", [".js", ".cpp", ".java", ".jav"], 2, "Java source files use .java."]], "SQL": [["Which command retrieves data?", ["GET", "SELECT", "FETCHALL", "READ"], 1, "SELECT retrieves data."], ["Which clause filters rows?", ["FILTER", "WHERE", "LIMITER", "CHECK"], 1, "WHERE filters rows."], ["Which command adds new records?", ["ADD", "INSERT", "CREATE", "PUSH"], 1, "INSERT adds records."], ["Which clause groups rows?", ["GROUP BY", "ORDER", "COLLECT", "MERGE"], 0, "GROUP BY groups rows."], ["Which keyword combines tables?", ["JOIN", "COMBINE", "MERGE TABLE", "CONNECT"], 0, "JOIN combines related tables."]], "General Programming": [["What is an algorithm?", ["A step-by-step procedure", "A programming language", "A database", "A computer"], 0, "An algorithm is a procedure for solving a problem."], ["What is debugging?", ["Finding and fixing errors", "Deleting code", "Designing logos", "Installing software"], 0, "Debugging identifies and fixes errors."], ["What is a variable?", ["A stored value", "A computer", "A compiler", "A browser"], 0, "A variable stores data."], ["What is a loop?", ["Repeated execution", "A database", "A file", "A password"], 0, "Loops repeat code."], ["What is source code?", ["Human-readable program instructions", "A CPU", "A network", "A keyboard"], 0, "Source code is the program written by developers."]]};
+const TOPICS={
+ Variables:["Variables are names used to store data that your program can use later.","Think of a variable as a labeled box. You put a value inside the box and use the label whenever you need that value.",`name = "Teju"\nage = 18\nprint(name)\nprint(age)`,`Teju\n18`,["Store information for later use.","Make programs easier to read.","Reuse values without repeating them."]],
+ "Data Types":["Data types tell Python what kind of value you are working with.","A data type is like a label that tells the program what kind of value you have.",`name = "Teju"\nage = 18\nis_student = True\nprint(type(name))`,`<class 'str'>`,["Choose the right operations.","Validate input correctly.","Understand how values behave."]],
+ Lists:["Lists store multiple values in an ordered, mutable collection.","A list is like a flexible row of labeled slots.",`numbers = [10,20,30]\nnumbers.append(40)\nprint(numbers)`,`[10, 20, 30, 40]`,["Store collections.","Keep ordered data.","Modify items when needed."]],
+ Tuples:["Tuples are ordered collections that cannot be changed after creation.","Use a tuple when the structure should remain fixed.",`point = (10,20)\nprint(point[0])`,`10`,["Protect fixed data.","Return multiple values.","Represent coordinates or records."]],
+ Sets:["Sets store unique values without relying on positions.","Adding the same value again does not create a duplicate.",`numbers = {1,2,2,3}\nprint(numbers)`,`{1, 2, 3}`,["Remove duplicates.","Perform set operations.","Test membership quickly."]],
+ Dictionaries:["Dictionaries store key-value pairs.","Think of a dictionary as labels pointing to associated values.",`student = {"name":"Teju","age":18}\nprint(student["name"])`,`Teju`,["Represent structured data.","Look values up by key.","Model real-world records."]],
+ Functions:["Functions package reusable behavior into a named block.","Define once, call whenever you need the behavior.",`def greet(name):\n    return "Hello " + name\nprint(greet("Teju"))`,`Hello Teju`,["Reuse logic.","Reduce repetition.","Organize programs."]],
+ OOP:["Object-oriented programming models software using objects and classes.","A class describes a kind of object and objects hold state and behavior.",`class Student:\n    def __init__(self,name):\n        self.name = name\n\ns = Student("Teju")\nprint(s.name)`,`Teju`,["Model complex systems.","Encapsulate behavior.","Reuse designs with inheritance."]],
+ "Exception Handling":["Exception handling lets a program respond gracefully when an error occurs.","Use try/except when an operation may fail and you want controlled behavior.",`try:\n    value = 10 / 0\nexcept ZeroDivisionError:\n    print("Cannot divide by zero")`,`Cannot divide by zero`,["Prevent abrupt crashes.","Handle expected failures.","Give useful feedback."]]
+};
+let data={user:null,attempts:[],projects:[],theme:"dark",completed:[]};
+try{data=Object.assign(data,JSON.parse(localStorage.getItem("NAXORA_MERGED_V2")||"{}"))}catch(e){}
 const $=id=>document.getElementById(id);
-
-function escapeHTML(value){
- return String(value??"")
- .replace(/&/g,"&amp;")
- .replace(/</g,"&lt;")
- .replace(/>/g,"&gt;")
- .replace(/"/g,"&quot;")
- .replace(/'/g,"&#039;");
+function save(){localStorage.setItem("NAXORA_MERGED_V2",JSON.stringify(data))}
+function initials(name){return (name||"Student").split(/\s+/).map(x=>x[0]).join("").slice(0,2).toUpperCase()}
+function toast(msg){$("toast").textContent=msg;$("toast").classList.add("show");setTimeout(()=>$("toast").classList.remove("show"),2200)}
+function login(){
+ const name=$("loginName").value.trim()||"Student",email=$("loginEmail").value.trim();
+ data.user={name,email};save();boot();toast("Welcome to Naxora.")
 }
-
-
-/* =========================
-   PAGE NAVIGATION
-========================= */
-
-function openPage(id){
-
- document.querySelectorAll(".page")
- .forEach(p=>p.classList.remove("active"));
-
- const target=$(id);
-
- if(target){
-  target.classList.add("active");
-  window.scrollTo({top:0,behavior:"smooth"});
- }
+function logout(){data.user=null;save();$("app").classList.add("hidden");$("loginScreen").classList.remove("hidden")}
+function boot(){
+ if(!data.user){return}
+ $("loginScreen").classList.add("hidden");$("app").classList.remove("hidden");
+ $("miniName").textContent=data.user.name.split(" ")[0];$("miniAvatar").textContent=initials(data.user.name);
+ $("profileName").textContent=data.user.name;$("profileEmail").textContent=data.user.email||"";
+ $("profileAvatar").textContent=initials(data.user.name);updateStats();renderTopics();updateResumeOffline();renderQuizSubjects();runCode()
 }
-
-document.addEventListener("click",e=>{
-
- const button=e.target.closest("[data-page]");
-
- if(button){
-  openPage(button.dataset.page);
- }
-
-});
-
-
-/* =========================
-   LOGIN
-========================= */
-
-function updateApp(){
-
- if(data.user){
-
-  $("loginScreen").classList.add("hidden");
-  $("app").classList.remove("hidden");
-
-  $("userName").textContent=data.user.name;
-
-  updateStats();
-
- }else{
-
-  $("loginScreen").classList.remove("hidden");
-  $("app").classList.add("hidden");
-
- }
-
+function go(id){
+ document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));$(id).classList.add("active");
+ document.querySelectorAll("nav button").forEach(b=>b.classList.toggle("active",b.dataset.page===id));
+ document.getElementById("nav").classList.remove("open");window.scrollTo({top:0,behavior:"smooth"});
+ if(id==="profile")updateProfile(); if(id==="learn")renderTopics(); if(id==="resume")updateResumeOffline()
 }
-
-$("loginBtn").onclick=function(){
-
- const name=$("loginName").value.trim();
- const email=$("loginEmail").value.trim();
-
- if(name.length<2){
-  alert("Please enter your name.");
-  return;
- }
-
- if(!email.includes("@")){
-  alert("Please enter a valid email.");
-  return;
- }
-
- data.user={
-  name:name,
-  email:email
- };
-
- save();
- updateApp();
-
-};
-
-$("logout").onclick=function(){
-
- if(confirm("Logout from NEXORA?")){
-
-  data.user=null;
-  save();
-  updateApp();
-
- }
-
-};
-
-
-/* =========================
-   STATS
-========================= */
-
-function updateStats(){
-
- const attempts=data.attempts;
-
- $("attempts").textContent=attempts.length;
- $("projectsDone").textContent=data.projects.length;
-
- if(!attempts.length){
-
-  $("average").textContent="0%";
-  $("bestScore").textContent="0%";
-  return;
-
- }
-
- const average=Math.round(
-  attempts.reduce((sum,a)=>sum+a.score,0)/attempts.length
- );
-
- const best=Math.max(...attempts.map(a=>a.score));
-
- $("average").textContent=average+"%";
- $("bestScore").textContent=best+"%";
-
+function toggleNav(){$("nav").classList.toggle("open")}
+function toggleTheme(){
+ const light=document.documentElement.dataset.theme==="light";
+ if(light){document.documentElement.dataset.theme="";data.theme="dark"}
+ else{document.documentElement.dataset.theme="light";data.theme="light"}
+ save()
 }
-
-
-/* =========================
-   LEARNING DATA
-========================= */
-
-const lessons={
-
- Python:{
-  intro:"Python is a high-level programming language known for simple syntax and applications in automation, web development, AI and data science.",
-  topics:{
-   "Variables":{
-    title:"Python Variables",
-    text:"A variable stores a value. Python does not require you to declare the data type manually.",
-    example:"name = \"Teju\"\\nage = 18\\nprint(name)",
-    link:"https://docs.python.org/3/tutorial/introduction.html"
-   },
-   "Functions":{
-    title:"Python Functions",
-    text:"Functions are reusable blocks of code. They help organize large programs.",
-    example:"def greet(name):\\n    return \"Hello \" + name\\n\\nprint(greet(\"Teju\"))",
-    link:"https://docs.python.org/3/tutorial/controlflow.html#defining-functions"
-   },
-   "Lists":{
-    title:"Python Lists",
-    text:"Lists store multiple values in an ordered and changeable collection.",
-    example:"numbers = [10,20,30]\\nprint(numbers[0])",
-    link:"https://docs.python.org/3/tutorial/introduction.html#lists"
-   },
-   "Loops":{
-    title:"Python Loops",
-    text:"Loops repeat code. The most common loops are for and while.",
-    example:"for i in range(5):\\n    print(i)",
-    link:"https://docs.python.org/3/tutorial/controlflow.html#for-statements"
-   }
-  }
- },
-
- JavaScript:{
-  intro:"JavaScript makes websites interactive and is also widely used for backend development.",
-  topics:{
-   "Variables":{
-    title:"JavaScript Variables",
-    text:"Use let for values that may change and const for bindings that should not be reassigned.",
-    example:"const name = \"Teju\";\\nlet age = 18;",
-    link:"https://developer.mozilla.org/en-US/docs/Learn/JavaScript/First_steps/Variables"
-   },
-   "Functions":{
-    title:"JavaScript Functions",
-    text:"Functions package reusable behavior.",
-    example:"function add(a,b){\\n return a+b;\\n}\\nconsole.log(add(2,3));",
-    link:"https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Functions"
-   },
-   "DOM":{
-    title:"DOM",
-    text:"The Document Object Model allows JavaScript to read and modify HTML elements.",
-    example:"document.querySelector(\"h1\").textContent=\"Hello\";",
-    link:"https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model"
-   },
-   "Events":{
-    title:"Events",
-    text:"Events allow your website to react to actions such as clicks and keyboard input.",
-    example:"button.addEventListener(\"click\",()=>{\\n alert(\"Clicked\");\\n});",
-    link:"https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/Events"
-   }
-  }
- },
-
- "C++":{
-  intro:"C++ is a compiled language used in systems programming, games and performance-heavy applications.",
-  topics:{
-   "Variables":{
-    title:"C++ Variables",
-    text:"C++ requires variables to have a declared type.",
-    example:"int age = 18;\\ndouble price = 10.5;",
-    link:"https://cplusplus.com/doc/tutorial/variables/"
-   },
-   "Functions":{
-    title:"C++ Functions",
-    text:"Functions allow reusable blocks of code.",
-    example:"int add(int a,int b){\\n return a+b;\\n}",
-    link:"https://cplusplus.com/doc/tutorial/functions/"
-   },
-   "Classes":{
-    title:"C++ Classes",
-    text:"Classes allow object-oriented programming by combining data and behavior.",
-    example:"class Student {\\npublic:\\n string name;\\n};",
-    link:"https://cplusplus.com/doc/tutorial/classes/"
-   },
-   "Pointers":{
-    title:"Pointers",
-    text:"Pointers store memory addresses and are an important part of C++ memory management.",
-    example:"int x=10;\\nint *p=&x;",
-    link:"https://cplusplus.com/doc/tutorial/pointers/"
-   }
-  }
- },
-
- Java:{
-  intro:"Java is a strongly typed object-oriented language used for enterprise, backend and many large applications.",
-  topics:{
-   "Classes":{
-    title:"Java Classes",
-    text:"A class is a blueprint for creating objects.",
-    example:"class Student {\\n String name;\\n}",
-    link:"https://dev.java/learn/classes-objects/"
-   },
-   "Objects":{
-    title:"Java Objects",
-    text:"Objects are instances created from classes.",
-    example:"Student s = new Student();",
-    link:"https://dev.java/learn/classes-objects/"
-   },
-   "Inheritance":{
-    title:"Inheritance",
-    text:"Inheritance allows one class to reuse properties and methods of another.",
-    example:"class Dog extends Animal { }",
-    link:"https://dev.java/learn/inheritance/"
-   },
-   "Exceptions":{
-    title:"Exceptions",
-    text:"Exceptions help programs handle unexpected runtime situations.",
-    example:"try {\\n int x=10/0;\\n} catch(Exception e) { }",
-    link:"https://dev.java/learn/exceptions/"
-   }
-  }
- },
-
- "HTML & CSS":{
-  intro:"HTML creates the structure of a webpage while CSS controls its appearance.",
-  topics:{
-   "HTML":{
-    title:"HTML",
-    text:"HTML uses elements to structure content.",
-    example:"<h1>Hello</h1>\\n<p>Welcome</p>",
-    link:"https://developer.mozilla.org/en-US/docs/Web/HTML"
-   },
-   "CSS":{
-    title:"CSS",
-    text:"CSS controls colors, spacing, layouts, typography and responsive design.",
-    example:"body{\\n background:black;\\n color:white;\\n}",
-    link:"https://developer.mozilla.org/en-US/docs/Web/CSS"
-   },
-   "Flexbox":{
-    title:"Flexbox",
-    text:"Flexbox makes one-dimensional layouts easier.",
-    example:".container{\\n display:flex;\\n justify-content:center;\\n}",
-    link:"https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_flexible_box_layout"
-   },
-   "Grid":{
-    title:"CSS Grid",
-    text:"Grid is useful for two-dimensional layouts.",
-    example:".grid{\\n display:grid;\\n grid-template-columns:repeat(3,1fr);\\n}",
-    link:"https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_grid_layout"
-   }
-  }
- },
-
- SQL:{
-  intro:"SQL is used to communicate with relational databases.",
-  topics:{
-   "SELECT":{
-    title:"SELECT",
-    text:"SELECT retrieves information from database tables.",
-    example:"SELECT name,age FROM students;",
-    link:"https://www.w3schools.com/sql/sql_select.asp"
-   },
-   "WHERE":{
-    title:"WHERE",
-    text:"WHERE filters database records.",
-    example:"SELECT * FROM students WHERE age > 18;",
-    link:"https://www.w3schools.com/sql/sql_where.asp"
-   },
-   "JOIN":{
-    title:"JOIN",
-    text:"JOIN combines rows from related tables.",
-    example:"SELECT * FROM students JOIN courses ON students.id=courses.student_id;",
-    link:"https://www.w3schools.com/sql/sql_join.asp"
-   },
-   "GROUP BY":{
-    title:"GROUP BY",
-    text:"GROUP BY groups rows for aggregate calculations.",
-    example:"SELECT department,COUNT(*) FROM students GROUP BY department;",
-    link:"https://www.w3schools.com/sql/sql_groupby.asp"
-   }
-  }
- },
-
- "Data Structures":{
-  intro:"Data structures organize information so algorithms can process it efficiently.",
-  topics:{
-   "Arrays":{
-    title:"Arrays",
-    text:"Arrays store elements in an indexed structure.",
-    example:"int arr[5]={1,2,3,4,5};",
-    link:"https://www.geeksforgeeks.org/array-data-structure/"
-   },
-   "Linked Lists":{
-    title:"Linked Lists",
-    text:"Linked lists connect nodes through references.",
-    example:"Node -> Node -> Node",
-    link:"https://www.geeksforgeeks.org/data-structures/linked-list/"
-   },
-   "Stacks":{
-    title:"Stacks",
-    text:"Stacks follow LIFO: Last In, First Out.",
-    example:"push(A)\\npush(B)\\npop() -> B",
-    link:"https://www.geeksforgeeks.org/stack-data-structure/"
-   },
-   "Queues":{
-    title:"Queues",
-    text:"Queues follow FIFO: First In, First Out.",
-    example:"A -> B -> C\\nremove() -> A",
-    link:"https://www.geeksforgeeks.org/queue-data-structure/"
-   }
-  }
- },
-
- "AI & Data Science":{
-  intro:"AI and data science combine programming, statistics and machine learning to extract useful patterns from data.",
-  topics:{
-   "NumPy":{
-    title:"NumPy",
-    text:"NumPy provides powerful numerical arrays and mathematical operations in Python.",
-    example:"import numpy as np\\na=np.array([1,2,3])",
-    link:"https://numpy.org/doc/"
-   },
-   "Pandas":{
-    title:"Pandas",
-    text:"Pandas is widely used for data manipulation and analysis.",
-    example:"import pandas as pd\\ndf=pd.read_csv(\"data.csv\")",
-    link:"https://pandas.pydata.org/docs/"
-   },
-   "Machine Learning":{
-    title:"Machine Learning",
-    text:"Machine learning algorithms learn patterns from data to make predictions or decisions.",
-    example:"Data → Training → Model → Prediction",
-    link:"https://scikit-learn.org/stable/user_guide.html"
-   },
-   "Statistics":{
-    title:"Statistics",
-    text:"Statistics helps understand distributions, relationships and uncertainty in data.",
-    example:"Mean = Sum of values / Number of values",
-    link:"https://www.khanacademy.org/math/statistics-probability"
-   }
-  }
- }
-
-};
-
-
-/* =========================
-   LEARNING ENGINE
-========================= */
-
-function loadLearning(){
-
- const language=$("learnTopic").value;
- const lesson=lessons[language];
-
- const buttons=Object.keys(lesson.topics);
-
- $("subtopics").innerHTML=
- `<h3>${escapeHTML(language)}</h3>`+
- buttons.map((topic,i)=>
-  `<button class="${i===0?"active":""}" data-topic="${escapeHTML(topic)}">
-   ${escapeHTML(topic)}
-  </button>`
- ).join("");
-
- document.querySelectorAll("#subtopics button")
- .forEach(btn=>{
-
-  btn.onclick=()=>{
-
-   document.querySelectorAll("#subtopics button")
-   .forEach(b=>b.classList.remove("active"));
-
-   btn.classList.add("active");
-
-   showTopic(language,btn.dataset.topic);
-
-  };
-
- });
-
- showTopic(language,buttons[0]);
-
+const baseVars={};
+function applyTheme(){if(data.theme==="light"){document.documentElement.dataset.theme="light"}}
+function renderTopics(){
+ const search=($("learnSearch").value||"").toLowerCase();
+ const keys=Object.keys(TOPICS).filter(k=>k.toLowerCase().includes(search));
+ $("topicList").innerHTML=keys.map((k,i)=>`<button class="${i===0?"active":""}" onclick="loadTopic('${k.replace(/'/g,"\\'")}')">${k}</button>`).join("");
+ loadTopic(keys[0]||"Variables")
 }
-
-function showTopic(language,topic){
-
- const t=lessons[language].topics[topic];
-
- $("lessonContent").innerHTML=`
-  <h2>${escapeHTML(t.title)}</h2>
-  <p>${escapeHTML(t.text)}</p>
-
-  <h3>Example</h3>
-
-  <pre>${escapeHTML(t.example)}</pre>
-
-  <h3>Key idea</h3>
-
-  <p>
-   Understand what the concept does, then practice it by writing
-   a small program yourself.
-  </p>
-
-  <h3>📖 Study this topic</h3>
-
-  <p>
-   <a href="${t.link}" target="_blank">
-    Open useful learning notes / documentation →
-   </a>
-  </p>
- `;
-
+function loadTopic(k){
+ const d=TOPICS[k]||TOPICS.Variables;
+ document.querySelectorAll("#topicList button").forEach(b=>b.classList.toggle("active",b.textContent===k));
+ $("lessonContent").innerHTML=`<div class="eyebrow">PYTHON • BEGINNER</div><h2 style="font-size:40px;margin:0 0 8px">${k}</h2><p style="font-size:18px">${escapeHTML(d[0])}</p><div class="panel" style="margin:20px 0"><b>In simple words</b><p class="muted">${escapeHTML(d[1])}</p></div><h3>Example</h3><pre class="lessonCode">${escapeHTML(d[2])}</pre><h3>Output</h3><pre class="lessonCode">${escapeHTML(d[3])}</pre><div class="twoCol"><div><h3>Why use it?</h3><ul>${d[4].map(x=>`<li>${escapeHTML(x)}</li>`).join("")}</ul></div><div><h3>Common mistakes</h3><ul><li>Skipping the basic syntax.</li><li>Using unclear names or assumptions.</li><li>Not testing the code with simple examples.</li></ul></div></div><div class="actions"><button class="btn primary" onclick="completeTopic('${k.replace(/'/g,"\\'")}')">✓ Mark complete</button><button class="btn" onclick="go('practice')">Practice →</button></div>`
 }
-
-$("loadLesson").onclick=loadLearning;
-
-loadLearning();
-
-
-/* =========================
-   DOUBT HELPER
-========================= */
-
-$("doubtBtn").onclick=()=>{
-
- const q=$("doubtInput").value.trim().toLowerCase();
-
- if(!q){
-  $("doubtAnswer").innerHTML="<p class='muted'>Ask a question first.</p>";
-  return;
- }
-
- let answer="";
-
- if(q.includes("function")){
-  answer="A function is a reusable block of code. Instead of writing the same logic repeatedly, you put it inside a function and call it whenever needed.";
- }
- else if(q.includes("variable")){
-  answer="A variable stores information such as a number, text or object. Different languages use different rules for creating variables.";
- }
- else if(q.includes("loop")){
-  answer="A loop repeats code. Common types include for and while loops.";
- }
- else if(q.includes("class")){
-  answer="A class is a blueprint used to create objects. It can contain data and methods.";
- }
- else if(q.includes("array")){
-  answer="An array is a collection of values stored in an ordered structure, usually accessed using an index.";
- }
- else if(q.includes("sql")){
-  answer="SQL is a language used to communicate with relational databases. SELECT, INSERT, UPDATE and DELETE are common SQL operations.";
- }
- else if(q.includes("html")){
-  answer="HTML creates the structure of a webpage using elements such as headings, paragraphs, links, images and forms.";
- }
- else if(q.includes("css")){
-  answer="CSS controls the visual appearance of webpages, including colors, spacing, fonts and layouts.";
- }
- else{
-  answer="Try breaking your doubt into a smaller question. For example: 'What is a function?', 'How does a loop work?', or 'What is an array?'";
- }
-
- $("doubtAnswer").innerHTML=
- `<div class="content" style="margin-top:15px">
-  <h3>💡 Explanation</h3>
-  <p>${escapeHTML(answer)}</p>
- </div>`;
-
-};
-
-
-/* =========================
-   PROJECT BUILDER
-========================= */
-
-$("projectBtn").onclick=()=>{
-
- const idea=$("projectInput").value.trim() || "Student Management System";
- const level=$("projectLevel").value;
-
- const project={
-  idea,
-  level,
-  date:new Date().toLocaleDateString()
- };
-
- data.projects.unshift(project);
- save();
- updateStats();
-
- $("projectOutput").innerHTML=`
-
- <h2>${escapeHTML(idea)}</h2>
-
- <p><b>Difficulty:</b> ${escapeHTML(level)}</p>
-
- <h3>🎯 Project Goal</h3>
- <p>Build a real application that solves a specific student or user problem.</p>
-
- <h3>✨ Core Features</h3>
-
- <ul>
-  <li>User authentication</li>
-  <li>Professional dashboard</li>
-  <li>Create / edit / delete data</li>
-  <li>Search and filtering</li>
-  <li>Progress statistics</li>
-  <li>Responsive mobile interface</li>
-  <li>Data persistence</li>
- </ul>
-
- <h3>🛠 Recommended Technology</h3>
-
- <p>
- Frontend: HTML + CSS + JavaScript.
- Backend: Node.js / Python when multi-user database functionality is required.
- </p>
-
- <h3>🚀 Development Roadmap</h3>
-
- <ol>
-  <li>Define the problem</li>
-  <li>Design UI</li>
-  <li>Create HTML structure</li>
-  <li>Build CSS design system</li>
-  <li>Implement JavaScript logic</li>
-  <li>Add validation</li>
-  <li>Test on mobile</li>
-  <li>Deploy</li>
- </ol>
-
- <h3>🏆 How to make it competition-ready</h3>
-
- <p>
- Add authentication, real database storage, analytics,
- polished animations, accessibility and a clear problem statement.
- </p>
- `;
-
-};
-
-
-/* =========================
-   CODE LAB
-========================= */
-
-$("runCode").onclick=()=>{
-
- const html=$("htmlCode").value;
-
- const css=$("cssCode").value;
-
- let js=$("jsCode").value;
-
- js=js.replace(/<\/script/gi,"<\\/script");
-
- $("preview").srcdoc=`
- <!DOCTYPE html>
- <html>
- <head>
- <style>${css}</style>
- </head>
- <body>
- ${html}
- <script>${js}<\/script>
- </body>
- </html>
- `;
-
-};
-
-
-/* =========================
-   RESUME
-========================= */
-
-$("resumeBtn").onclick=()=>{
-
- const name=$("rName").value.trim() || "Your Name";
-
- $("resumeOutput").innerHTML=`
-
- <div class="resume-preview">
-
-  <h1>${escapeHTML(name)}</h1>
-
-  <p>
-   <b>${escapeHTML($("rRole").value)}</b>
-  </p>
-
-  <p>
-   ${escapeHTML($("rEmail").value)}
-   ${$("rPhone").value?" • "+escapeHTML($("rPhone").value):""}
-  </p>
-
-  <p>
-   ${escapeHTML($("rLinkedin").value)}
-  </p>
-
-  <h2>Professional Summary</h2>
-
-  <p>${escapeHTML($("rSummary").value)}</p>
-
-  <h2>Skills</h2>
-
-  <p>${escapeHTML($("rSkills").value)}</p>
-
-  <h2>Education</h2>
-
-  <p>${escapeHTML($("rEducation").value)}</p>
-
-  <h2>Experience</h2>
-
-  <p>${escapeHTML($("rExperience").value)}</p>
-
-  <h2>Projects</h2>
-
-  <p>${escapeHTML($("rProjects").value)}</p>
-
-  <h2>Achievements & Certifications</h2>
-
-  <p>${escapeHTML($("rAchievements").value)}</p>
-
-  <button
-   class="btn"
-   onclick="window.print()"
-   style="margin-top:25px">
-   Print / Save PDF
-  </button>
-
- </div>
- `;
-
-};
-
-
-/* =========================
-   NOTES
-========================= */
-
-$("analyzeNotes").onclick=()=>{
-
- const text=$("notesInput").value.trim();
-
- if(!text){
-  $("notesOutput").innerHTML="<p>Paste your notes first.</p>";
-  return;
- }
-
- const lines=text
- .split(/\n+/)
- .map(x=>x.trim())
- .filter(Boolean);
-
- const keywords=[
-  "important",
-  "definition",
-  "advantage",
-  "disadvantage",
-  "algorithm",
-  "formula",
-  "syntax",
-  "types",
-  "steps",
-  "example",
-  "feature",
-  "key"
- ];
-
- let important=lines.filter(line=>
-  keywords.some(k=>line.toLowerCase().includes(k))
- );
-
- if(!important.length){
-  important=lines.slice(0,Math.min(7,lines.length));
- }
-
- $("notesOutput").innerHTML=`
-
- <h2>⭐ Important Points</h2>
-
- ${important.map(x=>`
-  <p>• ${escapeHTML(x)}</p>
- `).join("")}
-
- <h2>📚 Full Notes</h2>
-
- <p>
- ${escapeHTML(text).replace(/\n/g,"<br>")}
- </p>
- `;
-
-};
-
-
-/* =========================
-   QUIZ DATABASE
-========================= */
-
-const quizDB={
-
- Python:[
-  ["Which keyword defines a function?",["def","function","func","define"],0,"def is used to define a function."],
-  ["Which symbol starts a Python comment?",["//","#","<!--","--"],1,"# starts a comment."],
-  ["Which function returns the length of an object?",["size()","len()","length()","count()"],1,"len() returns the length."],
-  ["Which data type stores True or False?",["String","Boolean","Float","List"],1,"Boolean values are True and False."],
-  ["Which collection is ordered and mutable?",["Tuple","List","Set","String"],1,"Lists are ordered and mutable."],
-  ["Which keyword is used for a loop over a sequence?",["repeat","for","loop","iterate"],1,"for is used to iterate over sequences."],
-  ["Which operator is used for exponentiation?",["^","**","//","%%"],1,"** performs exponentiation."],
-  ["Which keyword handles exceptions?",["try","check","error","catch"],0,"try begins exception handling."]
- ],
-
- JavaScript:[
-  ["Which keyword creates a constant?",["let","const","var","fixed"],1,"const creates a constant binding."],
-  ["Which method prints to the console?",["print()","console.log()","echo()","write()"],1,"console.log() prints to the console."],
-  ["Which operator checks strict equality?",["==","=","===","!="],2,"=== checks value and type."],
-  ["Which keyword declares a block-scoped variable?",["let","var","define","new"],0,"let is block scoped."],
-  ["Which method selects the first matching element?",["querySelector","getElement","findFirst","select"],0,"querySelector returns the first matching element."],
-  ["Which event happens when a button is pressed?",["hover","click","load","press"],1,"click is the common mouse/button event."]
- ],
-
- HTML:[
-  ["Which tag creates a paragraph?",["<p>","<para>","<text>","<pg>"],0,"p creates a paragraph."],
-  ["Which tag creates a hyperlink?",["<link>","<a>","<url>","<href>"],1,"a creates links."],
-  ["Which attribute provides image alternative text?",["src","alt","href","title"],1,"alt provides alternative text."],
-  ["Which tag represents the largest heading?",["<h6>","<head>","<h1>","<heading>"],2,"h1 is the largest standard heading."],
-  ["Which tag creates an unordered list?",["<ol>","<ul>","<list>","<li>"],1,"ul creates unordered lists."]
- ],
-
- CSS:[
-  ["Which property changes text color?",["font-color","text-color","color","foreground"],2,"color changes text color."],
-  ["Which selector targets a class?",["#",".","@","*"],1,". targets classes."],
-  ["Which property rounds corners?",["radius","border-radius","corner","round"],1,"border-radius rounds corners."],
-  ["Which layout system is useful for one-dimensional layouts?",["Flexbox","Float","Table","Position"],0,"Flexbox is designed for one-dimensional layouts."],
-  ["Which property changes background color?",["background-color","bg","color-background","background"],0,"background-color sets background color."]
- ],
-
- "C++":[
-  ["Which symbol ends most C++ statements?",[".",":",";","!"],2,"C++ statements normally end with ;"],
-  ["Which header is commonly used for cout?",["stdio","iostream","string","math"],1,"iostream provides cout."],
-  ["Which keyword defines a class?",["object","class","structs","define"],1,"class defines a class."],
-  ["Which operator obtains an address?",["*","&","@","#"],1,"& is the address-of operator."],
-  ["Which container is part of STL?",["vector","arraylist","collection","sequence"],0,"vector is an STL container."]
- ],
-
- Java:[
-  ["Which keyword creates an object?",["make","create","new","object"],2,"new creates objects."],
-  ["Which method is the Java entry point?",["start()","main()","run()","begin()"],1,"main() is the standard entry point."],
-  ["Which keyword creates inheritance?",["inherits","extends","parent","superclass"],1,"extends is used for class inheritance."],
-  ["Java source files normally use which extension?",[".js",".cpp",".java",".jav"],2,"Java source files use .java."]
- ],
-
- SQL:[
-  ["Which command retrieves data?",["GET","SELECT","FETCHALL","READ"],1,"SELECT retrieves data."],
-  ["Which clause filters rows?",["FILTER","WHERE","LIMITER","CHECK"],1,"WHERE filters rows."],
-  ["Which command adds new records?",["ADD","INSERT","CREATE","PUSH"],1,"INSERT adds records."],
-  ["Which clause groups rows?",["GROUP BY","ORDER","COLLECT","MERGE"],0,"GROUP BY groups rows."],
-  ["Which keyword combines tables?",["JOIN","COMBINE","MERGE TABLE","CONNECT"],0,"JOIN combines related tables."]
- ],
-
- "General Programming":[
-  ["What is an algorithm?",["A step-by-step procedure","A programming language","A database","A computer"],0,"An algorithm is a procedure for solving a problem."],
-  ["What is debugging?",["Finding and fixing errors","Deleting code","Designing logos","Installing software"],0,"Debugging identifies and fixes errors."],
-  ["What is a variable?",["A stored value","A computer","A compiler","A browser"],0,"A variable stores data."],
-  ["What is a loop?",["Repeated execution","A database","A file","A password"],0,"Loops repeat code."],
-  ["What is source code?",["Human-readable program instructions","A CPU","A network","A keyboard"],0,"Source code is the program written by developers."]
- ]
-
-};
-
-
-/* =========================
-   QUIZ ENGINE
-========================= */
-
-let currentQuiz=[];
-let currentIndex=0;
-let selectedAnswers=[];
-
-function shuffle(array){
-
- const copy=[...array];
-
- for(let i=copy.length-1;i>0;i--){
-
-  const j=Math.floor(Math.random()*(i+1));
-
-  [copy[i],copy[j]]=[copy[j],copy[i]];
-
- }
-
- return copy;
-
+function completeTopic(k){if(!data.completed.includes(k))data.completed.push(k);save();updateStats();toast(k+" marked complete.")}
+function answerDoubt(){
+ const q=($("doubtInput").value||"").trim(); if(!q){toast("Type a question first.");return}
+ const topic=$("learnTopic").value; $("doubtAnswer").innerHTML=`<div class="panel"><b>Quick explanation</b><p class="muted">For <b>${escapeHTML(topic)}</b>, start by identifying the concept in your question, then compare it with a small working example. In this single-file version, the helper provides concise guidance rather than calling an external AI service.</p></div>`
 }
-
-$("startQuiz").onclick=()=>{
-
- const subject=$("quizLanguage").value;
-
- const requested=Number($("quizCount").value);
-
- const bank=quizDB[subject] || quizDB["General Programming"];
-
- if(bank.length<requested){
-
-  alert("Not enough unique questions for this quiz.");
-  return;
-
- }
-
- currentQuiz=shuffle(bank).slice(0,requested);
-
- currentIndex=0;
-
- selectedAnswers=Array(requested).fill(null);
-
- renderQuestion();
-
+const COMPILER_EXAMPLES={
+javascript:`function greet(name) {\n  console.log("Hello " + name);\n}\ngreet("NAXORA");`,
+python:`name = "NAXORA"\nfor i in range(3):\n    print(name, i + 1)`,
+c:`#include <stdio.h>\nint main() {\n    printf("Hello NAXORA!\\n");\n    return 0;\n}`,
+cpp:`#include <iostream>\nusing namespace std;\nint main() {\n    cout << "Hello NAXORA!" << endl;\n    return 0;\n}`,
+java:`public class Main {\n    public static void main(String[] args) {\n        System.out.println("Hello NAXORA!");\n    }\n}`,
+csharp:`using System;\nclass Program {\n    static void Main() { Console.WriteLine("Hello NAXORA!"); }\n}`,
+go:`package main\nimport "fmt"\nfunc main() { fmt.Println("Hello NAXORA!") }`,
+rust:`fn main() {\n    println!("Hello NAXORA!");\n}`,
+php:`<?php\necho "Hello NAXORA!";\n?>`,
+kotlin:`fun main() {\n    println("Hello NAXORA!")\n}`,
+typescript:`const message: string = "Hello NAXORA!";\nconsole.log(message);`,
+html:`<!doctype html>\n<html><body><h1>Hello NAXORA!</h1><p>Web preview works.</p></body></html>`,
+css:`body { font-family: Arial; padding: 40px; }\nh1 { color: #7656e8; }`,
+sql:`CREATE TABLE students (id INTEGER, name TEXT);\nINSERT INTO students VALUES (1, 'Teju');\nSELECT * FROM students;`
 };
-
-function renderQuestion(){
-
- const q=currentQuiz[currentIndex];
-
- $("quizBox").innerHTML=`
-
- <p class="muted">
- Question ${currentIndex+1} of ${currentQuiz.length}
- </p>
-
- <h2 style="margin:15px 0 20px">
- ${escapeHTML(q[0])}
- </h2>
-
- ${q[1].map((option,i)=>`
-
- <button
-  class="quiz-option ${selectedAnswers[currentIndex]===i?"selected":""}"
-  data-answer="${i}">
-
-  ${escapeHTML(option)}
-
- </button>
-
- `).join("")}
-
- <div class="quiz-nav">
-
-  <button class="btn" id="previousQuestion"
-   ${currentIndex===0?"disabled":""}>
-   ← Previous
-  </button>
-
-  <button class="btn primary-btn" id="nextQuestion">
-   ${currentIndex===currentQuiz.length-1?"Submit Quiz":"Next →"}
-  </button>
-
- </div>
- `;
-
- document.querySelectorAll(".quiz-option")
- .forEach(btn=>{
-
-  btn.onclick=()=>{
-
-   selectedAnswers[currentIndex]=Number(btn.dataset.answer);
-
-   renderQuestion();
-
-  };
-
- });
-
- $("previousQuestion").onclick=()=>{
-
-  if(currentIndex>0){
-   currentIndex--;
-   renderQuestion();
-  }
-
- };
-
- $("nextQuestion").onclick=()=>{
-
-  if(selectedAnswers[currentIndex]===null){
-
-   alert("Please select an answer.");
-   return;
-
-  }
-
-  if(currentIndex<currentQuiz.length-1){
-
-   currentIndex++;
-   renderQuestion();
-
-  }else{
-
-   finishQuiz();
-
-  }
-
- };
-
+const PISTON_LANG={
+ javascript:["javascript","18.15.0"],python:["python","3.10.0"],c:["c","10.2.0"],cpp:["c++","10.2.0"],
+ java:["java","15.0.2"],csharp:["csharp","6.12.0"],go:["go","1.16.2"],rust:["rust","1.56.1"],
+ php:["php","8.2.3"],kotlin:["kotlin","1.6.10"],typescript:["typescript","5.0.3"]
+};
+function compilerValue(){return $("compilerLanguage").value}
+function changeCompilerLanguage(){
+ const l=compilerValue();$("editorLabel").textContent=$("compilerLanguage").selectedOptions[0].text;
+ $("compilerCode").value=COMPILER_EXAMPLES[l]||"";
+ $("compilerStatus").textContent=(l==="javascript"||l==="html"||l==="css")?"Runs locally in your browser.":"Uses the online Piston execution service when your browser can reach it.";
+ if(l==="html"||l==="css") renderWebPreview()
 }
+function loadCompilerExample(){changeCompilerLanguage();toast("Example loaded.")}
+function clearCompiler(){$("compilerCode").value="";$("compilerOutput").textContent="";$("webPreview").srcdoc="";$("compilerTime").textContent=""}
+async function runCompiler(){
+ const l=compilerValue(),code=$("compilerCode").value;
+ if(!code.trim()){toast("Write some code first.");return}
+ const t=performance.now();$("compilerOutput").textContent="Running...";
+ try{
+   if(l==="html"||l==="css"){renderWebPreview();$("compilerOutput").textContent="Web preview updated.";return}
+   if(l==="javascript"){
+     let logs=[];const old=console.log;console.log=(...a)=>logs.push(a.join(" "));
+     try{new Function(code)();$("compilerOutput").textContent=logs.join("\n")||"Program finished with no console output."}
+     catch(e){$("compilerOutput").textContent="Error: "+e.message}
+     finally{console.log=old}
+   }else{
+     const cfg=PISTON_LANG[l];
+     if(!cfg) throw new Error("This language is not configured.");
+     const res=await fetch("https://emkc.org/api/v2/piston/execute",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({language:cfg[0],version:cfg[1],files:[{name:"main",content:code}]})});
+     if(!res.ok) throw new Error("Compiler service returned HTTP "+res.status);
+     const out=await res.json();
+     const combined=[out.run?.stdout,out.run?.stderr,out.run?.output].filter(Boolean).join("\n");
+     $("compilerOutput").textContent=combined||"Program finished with no output.";
+   }
+ }catch(e){$("compilerOutput").textContent="Compiler connection error.\n\n"+e.message+"\n\nTip: JavaScript, HTML and CSS work locally. Compiled languages need internet access to the online compiler service."}
+ $("compilerTime").textContent=Math.round(performance.now()-t)+" ms"
+}
+function renderWebPreview(){
+ const l=compilerValue(),code=$("compilerCode").value;
+ if(l==="html")$("webPreview").srcdoc=code;
+ else if(l==="css")$("webPreview").srcdoc=`<!doctype html><html><head><style>${code}</style></head><body><h1>NAXORA CSS Preview</h1><p>Edit CSS and run again.</p></body></html>`
+}
+function saveCodeProject(){
+ const l=compilerValue(),name="NAXORA "+$("compilerLanguage").selectedOptions[0].text+" Project";
+ data.projects.push({name,language:l,code:$("compilerCode").value,at:Date.now()});save();updateStats();toast("Code project saved.")
+}
+document.addEventListener("keydown",e=>{if((e.ctrlKey||e.metaKey)&&e.key==="Enter"&&$("code").classList.contains("active")){e.preventDefault();runCompiler()}})
 
+function buildProject(){
+ const name=$("projectName").value.trim()||"My Student Project",cat=$("projectCategory").value,level=$("projectLevel2").value;
+ const stack=$("projectStack").value.trim()||"HTML, CSS, JavaScript",desc=$("projectDescription").value.trim()||"A practical student project.";
+ const milestones=level==="Beginner"
+ ?["Problem definition & user stories","Wireframe and UI design","Build core screens","Add local persistence","Test and polish","Deploy and document"]
+ :level==="Intermediate"
+ ?["Requirements & architecture","Database/API design","Responsive frontend","Core business logic","Authentication & validation","Testing","Deployment & portfolio documentation"]
+ :["System architecture","Data and API contracts","Modular frontend/backend","Security & validation","Automated testing","Performance","Deployment & monitoring"];
+ const deliverables=["Working application","README with setup instructions","Screenshots / demo","Git repository with clean commits","Portfolio case study","Future improvement list"];
+ const roadmap=milestones.map((x,i)=>`<li><b>Phase ${i+1}:</b> ${escapeHTML(x)}</li>`).join("");
+ $("projectBuilderOutput").classList.remove("hidden");
+ $("projectBuilderOutput").innerHTML=`<div class="panel"><div class="eyebrow">${escapeHTML(level.toUpperCase())} • ${escapeHTML(cat.toUpperCase())}</div><h2 style="font-size:34px;margin:0">${escapeHTML(name)}</h2><p class="muted">${escapeHTML(desc)}</p><div class="twoCol"><div><h3>Recommended stack</h3><p>${escapeHTML(stack)}</p><h3>Milestones</h3><ol>${roadmap}</ol></div><div><h3>Portfolio deliverables</h3><ul>${deliverables.map(x=>`<li>${x}</li>`).join("")}</ul><h3>Portfolio description</h3><p>Built <b>${escapeHTML(name)}</b>, a ${escapeHTML(cat.toLowerCase())} focused on ${escapeHTML(desc.toLowerCase())}. Implemented using ${escapeHTML(stack)} with an emphasis on usability, maintainability and practical problem solving.</p></div></div><div class="actions"><button class="btn primary" onclick="saveBuiltProject()">Save to My Projects</button><button class="btn" onclick="go('resume');toast('Project details can be added to your resume.')">Add to Resume</button></div></div>`;
+ window._builtProject={name,cat,level,stack,desc};
+}
+function saveBuiltProject(){if(!window._builtProject)return;data.projects.push({...window._builtProject,at:Date.now()});save();updateStats();toast("Project added to your portfolio.");}
+function useProjectTemplate(name,cat,stack,desc){$("projectName").value=name;$("projectCategory").value=cat;$("projectStack").value=stack;$("projectDescription").value=desc;buildProject()}
+function clearProjectBuilder(){["projectName","projectStack","projectDescription"].forEach(id=>$(id).value="");$("projectBuilderOutput").classList.add("hidden")}
+
+/* ===== NAXORA OFFLINE BUILDERS ===== */
+function esc(s){
+  return String(s??"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+}
+function val(id){const e=document.getElementById(id);return e?e.value.trim():"";}
+function projectTemplate(n,c,s,d){document.getElementById("projectName").value=n;document.getElementById("projectCategory").value=c;document.getElementById("projectStack").value=s;document.getElementById("projectDescription").value=d;buildProjectOffline();}
+function projectExample(){projectTemplate("Smart Student Attendance","Web App","HTML, CSS, JavaScript, LocalStorage","Students can mark attendance, teachers can view records and the application generates simple attendance summaries.");}
+function buildProjectOffline(){
+  const name=val("projectName")||"My Project", cat=val("projectCategory")||"Web App", level=val("projectLevel2")||"Beginner", stack=val("projectStack")||"HTML, CSS, JavaScript", desc=val("projectDescription")||"A practical application that solves a real problem.";
+  const phases={
+    Beginner:["Plan the problem and users","Design the screens","Build the main interface","Add core features","Save and validate data","Test and publish"],
+    Intermediate:["Define requirements","Design application architecture","Build UI and data layer","Implement core workflows","Add validation and error handling","Test and optimize","Document and deploy"],
+    Advanced:["Define architecture and technical risks","Design database/API contracts","Build modular components","Implement security and reliability","Add automated tests","Optimize performance","Deploy and monitor"]
+  }[level]||[];
+  const features = cat==="AI / ML" ? ["Data collection","Data cleaning","Model/training pipeline","Evaluation","Prediction interface","Results visualization"] :
+                   cat==="Data Science" ? ["Data import","Cleaning and exploration","Analysis","Visualization","Insights","Export/report"] :
+                   ["Responsive interface","Navigation and user flows","Core functionality","Data persistence","Validation and error handling","Responsive testing"];
+  const output=document.getElementById("projectBuilderOutput");
+  output.innerHTML=`<div class="panel projectOutput"><div class="eyebrow">${esc(level)} • ${esc(cat)}</div>
+    <h2>${esc(name)}</h2><p class="muted">${esc(desc)}</p>
+    <div class="twoCol" style="margin-top:16px"><div><h3>Recommended stack</h3><p>${esc(stack)}</p>
+    <h3>Core features</h3><ul>${features.map(x=>`<li>${x}</li>`).join("")}</ul></div>
+    <div><h3>Build roadmap</h3>${phases.map((x,i)=>`<div class="phase"><b>Phase ${i+1}</b>${esc(x)}</div>`).join("")}</div></div>
+    <div class="actions"><button class="btn primary" onclick="saveProjectOffline()">Save Project</button><button class="btn" onclick="copyProjectPlan()">Copy Plan</button></div></div>`;
+  window.naxoraProject={name,cat,level,stack,desc,features,phases};
+}
+function saveProjectOffline(){
+  if(!window.naxoraProject){buildProjectOffline();}
+  const p=window.naxoraProject;
+  const key="naxora_projects_v3", arr=JSON.parse(localStorage.getItem(key)||"[]");
+  arr.push({...p,id:Date.now()});localStorage.setItem(key,JSON.stringify(arr));toast("Project saved on this device.");
+}
+function copyProjectPlan(){
+  const p=window.naxoraProject;if(!p)return;
+  const text=`${p.name}\nType: ${p.cat}\nLevel: ${p.level}\nStack: ${p.stack}\n\nGoal:\n${p.desc}\n\nFeatures:\n- ${p.features.join("\n- ")}\n\nRoadmap:\n${p.phases.map((x,i)=>`${i+1}. ${x}`).join("\n")}`;
+  if(navigator.clipboard)navigator.clipboard.writeText(text).then(()=>toast("Project plan copied."));
+  else toast("Copy is unavailable in this browser.");
+}
+function clearProjectOffline(){["projectName","projectStack","projectDescription"].forEach(id=>{const e=document.getElementById(id);if(e)e.value=""});const o=document.getElementById("projectBuilderOutput");if(o)o.innerHTML="";}
+
+function resumeExampleOffline(){
+  const e={rName:"Teju Gowda",rRole:"Student Developer",rEmail:"you@example.com",rPhone:"+91 00000 00000",rLocation:"India",rLinks:"linkedin.com/in/yourname",
+    rSummary:"Motivated student developer with a strong interest in programming, web development and practical software projects. Enjoys turning ideas into clean, useful applications.",
+    rSkills:"Python, JavaScript, HTML, CSS, SQL, Git, Problem Solving, Communication",
+    rEducation:"B.Tech / Degree — Your Institution — 2027\nRelevant coursework: Programming, Data Structures, Databases, AI",
+    rProjects:"NAXORA Learning Platform — HTML, CSS, JavaScript\nBuilt a responsive learning platform with quizzes, progress tracking, notes and coding tools.",
+    rExperience:"Student Developer / Intern — Company — 2026\nBuilt responsive interfaces and documented application workflows.",
+    rCerts:"Python Certification — Issuer — 2026\nHackathon Participant — 2026"};
+  Object.keys(e).forEach(k=>{const x=document.getElementById(k);if(x)x.value=e[k]});updateResumeOffline();toast("Example loaded.");
+}
+function updateResumeOffline(){
+  const name=val("rName")||"Your Name", role=val("rRole")||"Student Developer";
+  const contact=[val("rEmail"),val("rPhone"),val("rLocation")].filter(Boolean).map(esc).join(" · ");
+  const links=val("rLinks");
+  const summary=val("rSummary"), skills=val("rSkills"), edu=val("rEducation"), projects=val("rProjects"), exp=val("rExperience"), certs=val("rCerts");
+  const section=(title,text)=>text?`<h2>${title}</h2><div style="white-space:pre-line">${esc(text)}</div>`:"";
+  const skillHtml=skills?`<h2>Skills</h2><div class="resumeSkills">${skills.split(/[,;\n•]+/).map(x=>x.trim()).filter(Boolean).map(x=>`<span class="resumeSkill">${esc(x)}</span>`).join("")}</div>`:"";
+  document.getElementById("resumePreview").innerHTML=`<h1>${esc(name)}</h1><p><b>${esc(role)}</b>${contact?"<br>"+contact:""}</p>${links?`<p>${esc(links)}</p>`:""}${summary?`<h2>Professional Summary</h2><p>${esc(summary)}</p>`:""}${skillHtml}${section("Education",edu)}${section("Projects",projects)}${section("Experience",exp)}${section("Certifications & Achievements",certs)}`;
+}
+function saveResumeOffline(){
+  const ids=["rName","rRole","rEmail","rPhone","rLocation","rLinks","rSummary","rSkills","rEducation","rProjects","rExperience","rCerts"];
+  const obj={};ids.forEach(id=>obj[id]=val(id));localStorage.setItem("naxora_resume_v3",JSON.stringify(obj));toast("Resume saved on this device.");
+}
+function loadResumeOffline(){
+  const obj=JSON.parse(localStorage.getItem("naxora_resume_v3")||"null");if(!obj)return;
+  Object.keys(obj).forEach(id=>{const e=document.getElementById(id);if(e)e.value=obj[id]});updateResumeOffline();
+}
+function clearResumeOffline(){["rName","rRole","rEmail","rPhone","rLocation","rLinks","rSummary","rSkills","rEducation","rProjects","rExperience","rCerts"].forEach(id=>{const e=document.getElementById(id);if(e)e.value=""});updateResumeOffline();}
+function printResumeOffline(){
+  updateResumeOffline();
+  const resume=document.getElementById("resumePreview").innerHTML;
+  const w=window.open("","_blank","width=900,height=900");
+  if(!w){toast("Please allow pop-ups to print the resume.");return}
+  w.document.write(`<!doctype html><html><head><title>NAXORA Resume</title><style>body{font-family:Arial,sans-serif;color:#172033;padding:50px;line-height:1.55}h1{font-size:34px;margin:0 0 4px}h2{font-size:15px;text-transform:uppercase;letter-spacing:1px;border-bottom:2px solid #ddd;padding-bottom:6px;margin-top:24px}.resumeSkills{display:flex;flex-wrap:wrap;gap:6px}.resumeSkill{border:1px solid #ddd;border-radius:20px;padding:3px 8px;font-size:12px}</style></head><body>${resume}</body></html>`);
+  w.document.close();w.focus();setTimeout(()=>w.print(),300);
+}
+document.addEventListener("DOMContentLoaded",()=>{setTimeout(()=>{loadResumeOffline();updateResumeOffline();},100);});
+/* ===== END OFFLINE BUILDERS ===== */
+
+function legacyRenderResume(){
+ const u=data.user||{name:"Student",email:""};
+ $("rName").value=$("rName").value||u.name;
+ $("rEmail").value=$("rEmail").value||u.email;
+ updateResume()
+}
+function updateResume(){
+ const v=id=>$(id).value||"";
+ const name=v("rName")||"Student",role=v("rRole")||"Student / Developer",email=v("rEmail"),phone=v("rPhone"),loc=v("rLocation"),links=v("rLinks");
+ const summary=v("rSummary")||"Motivated student developing practical programming skills through structured learning and real-world projects.";
+ const skills=v("rSkills"),education=v("rEducation"),projects=v("rProjects"),experience=v("rExperience"),certs=v("rCerts");
+ const section=(title,text)=>text?`<h2>${title}</h2><div style="white-space:pre-line">${escapeHTML(text)}</div>`:"";
+ $("resumePreview").innerHTML=`<h1>${escapeHTML(name)}</h1><p><b>${escapeHTML(role)}</b>${email?" · "+escapeHTML(email):""}${phone?" · "+escapeHTML(phone):""}${loc?" · "+escapeHTML(loc):""}</p>${links?`<p>${escapeHTML(links)}</p>`:""}<h2>Professional Summary</h2><p>${escapeHTML(summary)}</p>${section("Skills",skills)}${section("Education",education)}${section("Projects",projects)}${section("Experience",experience)}${section("Certifications & Achievements",certs)}`
+}
+function saveResume(){
+ data.resume={};["rName","rRole","rEmail","rPhone","rLocation","rLinks","rSummary","rSkills","rEducation","rProjects","rExperience","rCerts"].forEach(id=>data.resume[id]=$(id).value);save();toast("Resume saved locally.")
+}
+function resumeExample(){
+ const ex={rName:"Teju Gowda",rRole:"AI & Data Science Student",rEmail:"teju@example.com",rPhone:"+91 90000 00000",rLocation:"India",rLinks:"linkedin.com/in/teju-gowda",rSummary:"Student developer focused on Python, web development and data-driven applications. Builds practical projects and enjoys turning concepts into usable software.",rSkills:"Python • JavaScript • SQL • HTML/CSS • Git • Data Structures",rEducation:"B.Tech — Your Institution — 2027\nRelevant coursework: Programming, Data Structures, Databases, AI",rProjects:"NAXORA Learning Platform — HTML, CSS, JavaScript\nBuilt a single-file learning platform with quizzes, progress tracking, notes, projects and browser coding.\n\nStudent Expense Tracker — JavaScript, LocalStorage\nBuilt a responsive expense management interface with persistent records.",rExperience:"Student Developer / Intern — Company Name — 2026\n• Developed responsive UI components\n• Improved workflows and documented features",rCerts:"Python Certification — Issuer — 2026\nHackathon Participant — 2026"};
+ Object.entries(ex).forEach(([id,val])=>$(id).value=val);updateResume();toast("Example resume loaded.")
+}
+if(data.resume){Object.entries(data.resume).forEach(([id,val])=>{if($(id))$(id).value=val})}
+
+function extractNotes(){
+ const text=$("notesInput").value.trim();if(!text){toast("Paste or write some notes first.");return}
+ const sentences=text.split(/(?<=[.!?])\s+|\n+/).map(s=>s.trim()).filter(Boolean);
+ const points=sentences.slice(0,8);$("notesOutput").innerHTML="<ul>"+points.map(x=>`<li style="margin:9px 0">${escapeHTML(x)}</li>`).join("")+"</ul>"
+}
+function renderQuizSubjects(){
+ const s=$("quizSubject");s.innerHTML=Object.keys(QUIZ_DB).map(k=>`<option>${escapeHTML(k)}</option>`).join("")
+}
+let quizState={questions:[],index:0,answers:[],subject:""};
+function shuffle(a){const x=[...a];for(let i=x.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[x[i],x[j]]=[x[j],x[i]]}return x}
+function startQuiz(){
+ const subject=$("quizSubject").value,count=Number($("quizCount").value),bank=QUIZ_DB[subject]||QUIZ_DB["General Programming"];
+ if(bank.length<count){toast("Not enough questions for this selection.");return}
+ quizState={questions:shuffle(bank).slice(0,count),index:0,answers:Array(count).fill(null),subject};
+ $("quizSetup").classList.add("hidden");$("quizArea").classList.remove("hidden");$("quizResult").classList.add("hidden");renderQuizQuestion()
+}
+function renderQuizQuestion(){
+ const q=quizState.questions[quizState.index],sel=quizState.answers[quizState.index],total=quizState.questions.length;
+ $("quizArea").innerHTML=`<div class="panel"><div class="small">Question ${quizState.index+1} of ${total}</div><div class="quizProgress"><i style="width:${quizState.index/total*100}%"></i></div><h2 style="white-space:pre-wrap;line-height:1.5">${escapeHTML(q[0])}</h2>${q[1].map((o,i)=>`<button class="quizOption ${sel===i?"selected":""}" onclick="selectQuiz(${i})"><span class="letter">${String.fromCharCode(65+i)}</span><span>${escapeHTML(o)}</span></button>`).join("")}<div style="margin-top:15px"><button class="btn" onclick="showHint()">▸ Need a hint?</button><div id="quizHint" class="panel hidden" style="margin-top:10px">${escapeHTML(q[3])}</div></div><div class="quizNav"><button class="btn" ${quizState.index===0?"disabled":""} onclick="prevQuiz()">← Previous</button><button class="btn primary" onclick="nextQuiz()">${quizState.index===total-1?"Submit Quiz":"Next →"}</button></div></div>`
+}
+function selectQuiz(i){quizState.answers[quizState.index]=i;renderQuizQuestion()}
+function prevQuiz(){if(quizState.index>0){quizState.index--;renderQuizQuestion()}}
+function nextQuiz(){if(quizState.answers[quizState.index]===null){toast("Please select an answer.");return}if(quizState.index<quizState.questions.length-1){quizState.index++;renderQuizQuestion()}else{finishQuiz()}}
+function showHint(){$("quizHint").classList.toggle("hidden")}
 function finishQuiz(){
-
- let correct=0;
-
- currentQuiz.forEach((q,i)=>{
-
-  if(selectedAnswers[i]===q[2]){
-   correct++;
-  }
-
- });
-
- const score=Math.round(
-  correct/currentQuiz.length*100
- );
-
- let grade;
-
- if(score>=90) grade="A+";
- else if(score>=80) grade="A";
- else if(score>=70) grade="B";
- else if(score>=60) grade="C";
- else if(score>=50) grade="D";
- else grade="F";
-
- data.attempts.unshift({
-  score,
-  grade,
-  correct,
-  total:currentQuiz.length,
-  subject:$("quizLanguage").value,
-  date:new Date().toLocaleString()
- });
-
- save();
- updateStats();
-
- $("quizBox").innerHTML=`
-
- <div style="text-align:center">
-
-  <h2>Quiz Completed 🎉</h2>
-
-  <h1 style="font-size:60px;color:var(--primary2)">
-   ${score}%
-  </h1>
-
-  <h2>
-   Grade ${grade}
-  </h2>
-
-  <p class="muted">
-   ${correct} / ${currentQuiz.length} correct answers
-  </p>
-
- </div>
-
- <hr style="margin:25px 0;border-color:var(--border)">
-
- <h2>Answer Review</h2>
-
- ${currentQuiz.map((q,i)=>{
-
-  const ok=selectedAnswers[i]===q[2];
-
-  return`
-
-  <div class="review">
-
-   <b>
-    ${i+1}. ${escapeHTML(q[0])}
-   </b>
-
-   <p class="${ok?"correct":"wrong"}">
-    Your answer:
-    ${escapeHTML(q[1][selectedAnswers[i]])}
-   </p>
-
-   <p class="correct">
-    Correct answer:
-    ${escapeHTML(q[1][q[2]])}
-   </p>
-
-   <small>${escapeHTML(q[3])}</small>
-
-  </div>
-
-  `;
-
- }).join("")}
-
- <button
-  class="btn primary-btn"
-  style="margin-top:20px"
-  id="retryQuiz">
-
-  Take Another Quiz
-
- </button>
-
- `;
-
- $("retryQuiz").onclick=()=>{
-  $("startQuiz").click();
- };
-
+ let correct=0;quizState.questions.forEach((q,i)=>{if(quizState.answers[i]===q[2])correct++});
+ const pct=Math.round(correct/quizState.questions.length*100),grade=pct>=90?"A+":pct>=80?"A":pct>=70?"B":pct>=60?"C":pct>=50?"D":"Needs Improvement";
+ data.attempts.push({subject:quizState.subject,score:pct,correct,total:quizState.questions.length,at:Date.now()});save();updateStats();
+ $("quizArea").classList.add("hidden");$("quizResult").classList.remove("hidden");
+ $("quizResult").innerHTML=`<div class="panel" style="text-align:center"><div class="eyebrow">QUIZ COMPLETE</div><div style="font-size:68px;font-weight:900">${pct}%</div><h2 class="${pct>=60?"good":"bad"}">Grade: ${grade}</h2><p class="muted">${correct} correct out of ${quizState.questions.length} questions</p><button class="btn primary" onclick="startQuiz()">Retake Quiz</button><button class="btn" onclick="resetQuizHome()">Back to Practice</button></div><div style="margin-top:15px"><div class="eyebrow">ANSWER REVIEW</div>${quizState.questions.map((q,i)=>{const ok=quizState.answers[i]===q[2];return `<div class="reviewItem"><b>${i+1}. ${escapeHTML(q[0])}</b><p class="${ok?"good":"bad"}">${ok?"✓ Correct":"✗ Needs review"}</p><p class="small">Your answer: ${escapeHTML(q[1][quizState.answers[i]]||"Not answered")}</p>${ok?"":"<p class=\"small\">Correct answer: <b>"+escapeHTML(q[1][q[2]])+"</b></p>"}</div>`}).join("")}</div>`
 }
-
-
-/* =========================
-   THEMES
-========================= */
-
-const themes={
-
- purple:{
-  primary:"#7c5cff",
-  primary2:"#a78bfa"
- },
-
- blue:{
-  primary:"#168cff",
-  primary2:"#66b7ff"
- },
-
- green:{
-  primary:"#16a66a",
-  primary2:"#5ee7ad"
- },
-
- red:{
-  primary:"#e5485d",
-  primary2:"#ff8996"
- },
-
- gold:{
-  primary:"#d39a24",
-  primary2:"#ffd166"
- }
-
-};
-
-function setTheme(theme){
-
- const t=themes[theme] || themes.purple;
-
- document.documentElement.style.setProperty("--primary",t.primary);
- document.documentElement.style.setProperty("--primary2",t.primary2);
-
- data.theme=theme;
- save();
-
- $("themeSelect").value=theme;
-
+function resetQuizHome(){$("quizSetup").classList.remove("hidden");$("quizArea").classList.add("hidden");$("quizResult").classList.add("hidden")}
+function updateStats(){
+ const a=data.attempts||[],avg=a.length?Math.round(a.reduce((s,x)=>s+x.score,0)/a.length):0,best=a.length?Math.max(...a.map(x=>x.score)):0;
+ $("heroScore").textContent=best+"%";$("heroAttempts").textContent=a.length;
+ $("profileStats").textContent=`${a.length} quiz attempts • ${best}% best score • ${data.completed.length} topics completed • ${data.projects.length} projects`
 }
-
-$("themeSelect").onchange=e=>{
- setTheme(e.target.value);
-};
-
-
-/* =========================
-   START
-========================= */
-
-setTheme(data.theme || "purple");
-
-updateApp();
-
+function updateProfile(){updateStats();$("profileName").textContent=data.user?.name||"Student";$("profileEmail").textContent=data.user?.email||""}
+function escapeHTML(v){return String(v??"").replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll('"',"&quot;").replaceAll("'","&#039;")}
+document.addEventListener("keydown",e=>{
+ if(!$("practice").classList.contains("active")||$("quizArea").classList.contains("hidden"))return;
+ if(["1","2","3","4"].includes(e.key))selectQuiz(Number(e.key)-1);
+ if(e.key==="Enter")nextQuiz()
+});
+applyTheme();
+if(data.user)boot(); else { /* login shown */ }
 </script>
-
 </body>
 </html>
